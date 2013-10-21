@@ -4,16 +4,18 @@
 
 PASSWORD="$1"
 
-FILE_TODAY=$(date +"%Y%j") # use this if you want todays files
+DATE_DATABASE=$(date +"%Y-%m-%d")
 
-# FILE_TODAY="2013293"  # use this line if you want a specific date
+DATE_NASA=$(date +"%Y%j") # use this if you want todays files
 
+# DATE_NASA="2013293"  # use this line if you want a specific date
+# DATE_DATABASE="2013-10-12" # and this
 
 ### Downloading two JPG files from Earthdata.nasa.gov (extracted from https://earthdata.nasa.gov/labs/worldview/ )
 
-wget -O 1-2-1.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$FILE_TODAY&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_SurfaceReflectance_Bands121&format=image/jpeg&width=12288&height=6827"
+wget -O 1-2-1.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$DATE_NASA&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_SurfaceReflectance_Bands121&format=image/jpeg&width=12288&height=6827"
 
-wget -O 3-6-7.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$FILE_TODAY&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_CorrectedReflectance_Bands367&format=image/jpeg&width=12288&height=6827"
+wget -O 3-6-7.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$DATE_NASA&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_CorrectedReflectance_Bands367&format=image/jpeg&width=12288&height=6827"
 
 # Reproject the downloaded files to web mercator and TIF
 
@@ -30,7 +32,7 @@ python make_satellite.py
 
 ### generate tiles from the combine.jpg which is created with "python make_satellite.py". 
 
-MAPNIK_MAP_FILE="image.xml" MAPNIK_TILE_DIR="$FILE_TODAY" MAPNIK_MINZOOM="5" MAPNIK_MAXZOOM="11" python generate_tiles_imagery.py
+MAPNIK_MAP_FILE="image.xml" MAPNIK_TILE_DIR="$DATE_NASA" MAPNIK_MINZOOM="5" MAPNIK_MAXZOOM="11" python generate_tiles_imagery.py
 
 ### moving catalog to right place
 
@@ -39,11 +41,11 @@ MAPNIK_MAP_FILE="image.xml" MAPNIK_TILE_DIR="$FILE_TODAY" MAPNIK_MINZOOM="5" MAP
 
 ### Adding the date to icefinder.se
 
-wget -q -O today.url http://icefinder.se/2.0b/add.php?date=$FILE_TODAY&password=$PASSWORD
+wget -q -O today.url http://icefinder.se/2.0b/add.php?date=$DATE_DATABASE&password=$PASSWORD
 
 ### Renaming combine file (as backup)
 
-mv combined.jpg combined.$FILE_TODAY.jpg
+mv combined.jpg combined.$DATE_NASA.jpg
 
 ### Removing all used files
 
