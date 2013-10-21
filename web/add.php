@@ -11,8 +11,7 @@
 		.delete {
 			cursor: pointer;
 		}
-	
-	
+			
 	</style>
 
 
@@ -33,21 +32,22 @@ if ($_GET['delete'] and $_GET['password'] == $password_add) {
 	
 	$id = substr($_GET['delete'], -$length);
 	
-	mysql_query("DELETE FROM modis WHERE s_id=" . $id);
+	
+	mysql_query("DELETE FROM satellite WHERE id=" . $id);
 
 	}
 	
 
 if ($_GET['date'] and $_GET['password'] == $password_add) {
 
-		$add_query = "INSERT INTO modis (date, satellite) VALUES ('" . $_GET['date'] . "', '" . 		$_GET['satellite'] . "');";
+		$add_query = "INSERT INTO satellite (date) VALUES ('" . $_GET['date'] . "');";
 	
 		$result = mysql_query($add_query, $link) or die("Error. Felet: " . mysql_error());
 
 	}
 
 
-	$query = "SELECT * FROM modis ORDER BY date" ;
+	$query = "SELECT * FROM satellite ORDER BY date" ;
 	$list = mysql_query($query, $link) or die("Fr?gan misslyckades: " . mysql_error());
 	
 	?>
@@ -59,10 +59,8 @@ if ($_GET['date'] and $_GET['password'] == $password_add) {
 	$count = 0;
 	
 	while ($satellites = mysql_fetch_array($list, MYSQL_ASSOC)) {
-	
-		if ($satellites['satellite']) { $type = "aqua"; } else { $type = "terra"; }
-	
-		echo '<li>' . $satellites['date'] . ' ' . $type . ' <span class="delete" id="satellite' . $satellites['s_id'] . '">x</span></li>' . "\n"; 
+		
+		echo '<li>' . $satellites['date'] . ' <span class="delete" id="satellite' . $satellites['id'] . '">x</span></li>' . "\n"; 
 		
 		$count++;
 	
@@ -81,8 +79,9 @@ if ($_GET['date'] and $_GET['password'] == $password_add) {
 		$('.delete').click(function() {
 			
 			$id = $(this).attr('id');
+			$password = $('#pass').attr('value');
 			
-			window.location = 'add.php?delete=' + $id; 
+			window.location = 'add.php?delete=' + $id + '&password=' + $password; 
 			
 		});
 		
@@ -90,12 +89,10 @@ if ($_GET['date'] and $_GET['password'] == $password_add) {
 	
 	
 	<form method="get">
+			Datum (2XXX-XX-XX)<br>
 		<input type="text" value="" name="date"><br>
-			<select name="satellite">
-			  <option value="0">Terra</option>
-			  <option value="1">Aqua</option>
-			  <option value="2">Special</option>
-			</select><br>
+			Lösenord<br>
+		<input type="text" value="" name="password" id="pass"><br>
 		<input type="submit" value="skicka">
 	</form>
 	
