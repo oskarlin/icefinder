@@ -33,11 +33,11 @@
 		});
 
 
-		var testlager = L.tileLayer('tiles2013291/{z}/{x}/{y}.jpg', {
+		var testlager = L.tileLayer('2013294/{z}/{x}/{y}.jpg', {
 			maxZoom: 11,
 			minZoom: 5,
 			attribution: 'oskarlin'
-		});
+		}).addTo(map);
 
 
 
@@ -45,14 +45,14 @@
 			maxZoom: 11,
 			minZoom: 5,
 			attribution: 'oskarlin'
-		}).addTo(map);
+		});
 
 
 		var frjpg = L.tileLayer('tiles2013293/{z}/{x}/{y}.jpg', {
 			maxZoom: 11,
 			minZoom: 5,
 			attribution: 'oskarlin'
-		}).addTo(map);
+		});
 
 
 
@@ -90,7 +90,7 @@
 
 
 		var baseMaps = {
-				"frtif": frtif,
+				"testlager": testlager,
 				"frjpg": frjpg
 /*				"Utan GDAL 24 bit": utan,
 		    "Med GDAL, PNG 8 bit": med,
