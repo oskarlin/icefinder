@@ -33,7 +33,7 @@ python make_satellite.py
 MAPNIK_MAP_FILE="image.xml"
 MAPNIK_TILE_DIR="tiles$FILE_TODAY"
 MAPNIK_MINZOOM=5
-MAPNIK_MAXZOOM=11
+MAPNIK_MAXZOOM=7
 
 python generate_tiles_imagery.py
 
@@ -49,7 +49,7 @@ wget http://icefinder.se/2.0b/add.php?date=$FILE_TODAY&password=$PASSWORD
 
 ### Renaming combine file (as backup)
 
-mv combine.jpg combine.$FILE_TODAY.jpg
+mv combined.jpg combined.$FILE_TODAY.jpg
 
 ### Removing all used files
 
