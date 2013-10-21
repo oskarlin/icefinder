@@ -200,6 +200,14 @@ if __name__ == "__main__":
         tile_dir = os.environ['MAPNIK_TILE_DIR']
     except KeyError:
         tile_dir = home + "/osm/tiles/"
+    try:
+        minZoom = os.environ['MAPNIK_MINZOOM']
+    except KeyError:
+        tile_dir = 5
+    try:
+        minZoom = os.environ['MAPNIK_MAXZOOM']
+    except KeyError:
+        tile_dir = 11
 
     if not tile_dir.endswith('/'):
         tile_dir = tile_dir + '/'
@@ -216,8 +224,8 @@ if __name__ == "__main__":
 
     # Bjorkis 4.0,55.0,31.0,70.0
 
-    minZoom = 8
-    maxZoom = 11
+#    minZoom = 8
+#    maxZoom = 11
     bbox = (4.0, 55, 31, 70)
     render_tiles(bbox, mapfile, tile_dir, minZoom, maxZoom)
 
