@@ -1,0 +1,298 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+  <title>Ice finder 1.0b3 by Oskar Karlin</title>
+    <script src="OpenLayers.js"></script>
+    </head>
+    <body>
+    
+    	<style>
+    	
+    		body { margin: 0; 
+	    		font-family: helvetica, arial, sans-serif;
+	    		
+    		}
+    		
+    		.olcontrollayerswitcher .layersdiv {
+	    		
+	    		background-color: #eeeeee;
+	    		color: black;
+    		}
+    		
+    		.olControlLayerSwitcher {
+	    		background-color: #eeeeee;
+	    		top: 20px;
+	    		right: 20px;
+	    		margin: 0;
+	    		padding: 10px;
+	    		height: auto;
+	    		position: absolute;
+	    		z-index: 5000;
+	    		-webkit-box-shadow:  0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+	    		box-shadow:  0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+	    		-webkit-border-radius: 7px;
+	    		border-radius: 7px;    		
+	    		}
+    		
+    		#map {
+	    		background-image: url(images/rutnat.png);
+    		}
+    		
+    		.olcontrollayerswitcher .layersDiv {
+	    		padding: 0;
+	    		margin:0;
+    		}
+    		
+    		#specialpanel {
+    			width: 200px;
+	    		background-color: #eeeeee;
+	    		top: 20px;
+	    		right: 20px;
+	    		margin: 0;
+	    		padding: 10px;
+	    		height: auto;
+	    		position: absolute;
+	    		z-index: 5000;
+	    		-webkit-box-shadow:  0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+	    		box-shadow:  0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+	    		-webkit-border-radius: 7px;
+	    		border-radius: 7px;
+	    		
+	    		font-size: 12px; 		
+    		}
+    		
+    		#specialpanel a {
+	    		text-decoration: none;
+	    		color: black;
+    		}
+    		
+    		#specialpanel ul {
+	    		list-style: none;
+	    		list-style-type: none;
+	    		margin-left: 0;
+	    		margin-top: 0;
+	    		margin-bottom: 0;
+	    		padding: 0;
+    		}
+    		
+    		#specialpanel ul li {
+	    		margin: 0;
+    		}
+    		
+    		#specialpanel .olButton {
+	    		width: 20px;
+	    		height: 20px;
+	    		background-color: #ff0000;
+    		}
+    		
+    		#landtoggle, #kollektivtoggle {
+	    		padding: 4px 4px 4px 7px;
+    		
+    		}
+    		
+    		#landtoggle.inactive {
+    		}
+    		
+    		#landtoggle.active {
+    		}
+    		
+    		#landtoggle.active span, #kollektivtoggle.active span {
+	    		color: #444444;
+    		}
+
+    		#landtoggle.inactive span, #kollektivtoggle.inactive span {
+	    		color: #aaaaaa;
+    		}
+    		
+    		#specialpanel #modis {
+	    		margin-bottom: 10px;
+    		}
+    		
+    		#modis .active {
+	    		background-color: #84d2ff;
+ 	    		-webkit-border-radius: 10px;
+	    		border-radius: 10px;
+	    		padding: 4px 4px 4px 7px;
+	    	}
+	    	
+	    	#modis .inactive {
+	    		padding: 4px 4px 4px 7px;
+		    	
+	    	}
+	    	
+	    	h3 {
+		    	margin-top: 0;
+		    	margin-bottom: 3px;
+	    	}
+    	
+    	</style>
+      <div style="width:100%; height:100%" id="map"></div>
+      <div id="specialpanel">
+      	<h3>Satellitlager</h3>
+      	<ul id="modis">
+      		<li id="aqua20121214_item" class="active"><a href="javascript:toolActivate(aqua20121214, 'aqua20121214_item');">2012-12-14 Aqua</a></li>
+      		<li id="terra20121209_item" class="inactive"><a href="javascript:toolActivate(terra20121209, 'terra20121209_item');">2012-12-09 Terra</a></li>
+      	</ul>
+      	<h3>Andra lager</h3>
+      	<ul id="overlays">
+      		<li id="landtoggle" class="active"><a href="javascript:toggleLandlayer();"><span>✔ Landytan</span></a></li>
+      		<li id="kollektivtoggle" class="inactive"><a href="javascript:toggleKollektivlayer();"><span>✔ SL och färjelinjer</span></a></li>
+      	</ul>
+      </div>
+
+      <script defer="defer" type="text/javascript">
+
+//						format = 'image/png';
+						
+//				OpenLayers.DOTS_PER_INCH = 90.71428571428572;
+
+
+						
+
+//						var titleString = OpenLayers.i18n('Satellitlager');
+
+            map = new OpenLayers.Map ("map", {
+                controls:[
+                    new OpenLayers.Control.Navigation(),
+                    new OpenLayers.Control.PanZoomBar(),
+//                    new OpenLayers.Control.Permalink(),
+                    new OpenLayers.Control.ScaleLine({geodesic: true}),
+                    new OpenLayers.Control.Attribution()
+//                    new OpenLayers.Control.MousePosition()
+										],
+                maxExtent: new OpenLayers.Bounds(1700000,8000000,2200000,8500000),
+                maxResolution: 6250,
+                units: 'm',
+                projection: new OpenLayers.Projection("EPSG:3857"),
+                displayProjection: new OpenLayers.Projection("EPSG:3857")
+            } );
+
+
+          //  map.addControl(new OpenLayers.Control.LayerSwitcher({'div':OpenLayers.Util.getElement('layerswitcher')}));
+
+            var aqua20121214 = new OpenLayers.Layer.XYZ("2012-12-14 Aqua", "2012-12-14Aqua_16384/${z}/${x}/${y}.png", {
+            	numZoomLevels: 6, 
+            	alpha: true, 
+            	isBaseLayer: true, 
+            	attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
+            	//transitionEffect: 'resize'
+            	});
+
+            var terra20121209 = new OpenLayers.Layer.XYZ("2012-12-09 Terra", "2012-12-09Terra_16384/${z}/${x}/${y}.png", {
+            	numZoomLevels: 6, 
+            	alpha: true, 
+            	isBaseLayer: true, 
+            	attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
+//            	transitionEffect: 'resize'
+							});
+
+            var overlayer = new OpenLayers.Layer.XYZ("Land", "modis_overlay_ny/${z}/${x}/${y}.png", {
+            	numZoomLevels: 6, 
+            	alpha: true, 
+            	isBaseLayer: false, 
+            	attribution: '<a href="http://www.norstedts.se/kartor/">Norstedts Kartor</a>'
+            	//transitionEffect: 'resize'
+            	});
+
+            var kollektivlayer = new OpenLayers.Layer.XYZ("Kollektivtrafik", "modis_sl_ny/${z}/${x}/${y}.png", {
+            	numZoomLevels: 6, 
+            	alpha: true, 
+            	isBaseLayer: false, 
+            	attribution: 'SL and Waxholmsbolaget',
+            	visibility: false
+//            	transitionEffect: 'resize'
+							});
+            
+            map.addLayers([aqua20121214, terra20121209, overlayer, kollektivlayer]);
+//            map.addLayer(overlayer);
+                    
+			        var bounds = new OpenLayers.Bounds(1700000,8000000,2200000,8500000);
+
+                map.zoomToExtent(bounds);
+                
+            
+//            document.getElementById("layerswitcher").firstChild.firstChild.innerHTML = "Satellit-lager";
+            
+            
+              var toolListeners = {
+                    "activate": toolActivate,
+                    "deactivate": toolDeactivate
+                };
+
+
+              var modis = document.getElementById("modis");
+              
+               
+              function toolActivate(satellite_layer, sattelite_id) {
+              		map.setBaseLayer(satellite_layer, sattelite_id);
+              		
+              		i=0;
+
+              		while (modis.childNodes[i]) {
+	              		modis.childNodes[i].className = "inactive";
+	              		i++;
+	              	}
+	              	
+	              	document.getElementById(sattelite_id).className = "active";              		
+              		
+                }
+                	function toolDeactivate(satellite_layer) {
+	              	document.getElementById(sattelite_id).className = "inactive";              		
+                }
+                              
+              function toggleLandlayer() {
+              	if (overlayer.visibility == true) {
+	              	overlayer.setVisibility(false);
+	              	document.getElementById("landtoggle").className = "inactive";
+              	} else {
+	              	overlayer.setVisibility(true);
+	              	document.getElementById("landtoggle").className = "active";
+              	}
+              }
+
+              function toggleKollektivlayer() {
+              	if (kollektivlayer.visibility == true) {
+	              	kollektivlayer.setVisibility(false);
+	              	document.getElementById("kollektivtoggle").className = "inactive";
+              	} else {
+	              	kollektivlayer.setVisibility(true);
+	              	document.getElementById("kollektivtoggle").className = "active";
+              	}
+              }
+
+
+
+            
+ /*           panel = new OpenLayers.Control.Panel(
+                    {div: document.getElementById("specialpanel")}
+                );
+            
+             var blue = new OpenLayers.Control({
+                    type: OpenLayers.Control.TYPE_TOGGLE,
+                    eventListeners: toolListeners,
+                    displayClass: "blue"
+                });
+                
+             panel.addControls([blue]);
+             
+             map.addControl(panel); */
+            
+      </script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-671782-8']);
+  _gaq.push(['_setDomainName', 'skridskokartan.se']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

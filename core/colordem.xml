@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" maximum-extent="-20037508.34,-20037508.34,20037508.34,20037508.34">
+
+<Parameters>
+  <Parameter name="bounds">0.7031,53.5403,39.375,72.0739</Parameter>
+  <Parameter name="center">21.1816,63.7242,4</Parameter>
+  <Parameter name="format">png24</Parameter>
+  <Parameter name="minzoom">4</Parameter>
+  <Parameter name="maxzoom">11</Parameter>
+  <Parameter name="scale">1</Parameter>
+  <Parameter name="metatile">2</Parameter>
+  <Parameter name="id"><![CDATA[IceFinder]]></Parameter>
+  <Parameter name="_updated">1381859483000</Parameter>
+  <Parameter name="name"><![CDATA[icefinder]]></Parameter>
+  <Parameter name="tilejson"><![CDATA[2.0.0]]></Parameter>
+  <Parameter name="scheme"><![CDATA[xyz]]></Parameter>
+</Parameters>
+
+
+<Style name="countries" filter-mode="first">
+  <Rule>
+    <PolygonSymbolizer fill="#ffffff" />
+  </Rule>
+</Style>
+<Style name="countries-outline" filter-mode="first">
+  <Rule>
+    <LineSymbolizer stroke="#85c5d3" stroke-width="2" stroke-linejoin="round" />
+  </Rule>
+</Style>
+<Layer name="countries"
+  status="off"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>countries-outline</StyleName>
+    <StyleName>countries</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/IceFinder/layers/countries/82945364-10m-admin-0-countries.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="balticsea" filter-mode="first">
+  <Rule>
+    <RasterSymbolizer opacity="1" scaling="lanczos" />
+  </Rule>
+</Style>
+<Layer name="balticsea"
+  status="off"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>balticsea</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/IceFinder/layers/balticsea.tif]]></Parameter>
+       <Parameter name="type"><![CDATA[gdal]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="sverige" filter-mode="first">
+  <Rule>
+    <PolygonSymbolizer fill-opacity="1" fill="#edf5c6" />
+  </Rule>
+</Style>
+<Layer name="sverige"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>sverige</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/IceFinder/layers/sverige/landyta_250_3857.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="norge" filter-mode="first">
+  <Rule>
+    <PolygonSymbolizer gamma="0.2" fill-opacity="1" fill="#edf5c6" />
+  </Rule>
+</Style>
+<Layer name="norge"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>norge</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/IceFinder/layers/norge/noge-land.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="nordencolor" filter-mode="first">
+  <Rule>
+    <RasterSymbolizer comp-op="src-in" opacity="0.5" />
+  </Rule>
+</Style>
+<Layer name="nordencolor"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>nordencolor</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/IceFinder/layers/nordencolor.tif]]></Parameter>
+       <Parameter name="type"><![CDATA[gdal]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Layer name="nordendemref"
+  status="off"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/IceFinder/layers/nordendemref.tif]]></Parameter>
+       <Parameter name="type"><![CDATA[gdal]]></Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>
