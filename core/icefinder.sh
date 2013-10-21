@@ -30,7 +30,7 @@ python make_satellite.py
 
 ### generate tiles from the combine.jpg which is created with "python make_satellite.py". 
 
-MAPNIK_MAP_FILE="image.xml" MAPNIK_TILE_DIR="$FILE_TODAY" MAPNIK_MINZOOM="5" MAPNIK_MAXZOOM="7" python generate_tiles_imagery.py
+MAPNIK_MAP_FILE="image.xml" MAPNIK_TILE_DIR="$FILE_TODAY" MAPNIK_MINZOOM="5" MAPNIK_MAXZOOM="11" python generate_tiles_imagery.py
 
 ### moving catalog to right place
 
@@ -39,7 +39,7 @@ MAPNIK_MAP_FILE="image.xml" MAPNIK_TILE_DIR="$FILE_TODAY" MAPNIK_MINZOOM="5" MAP
 
 ### Adding the date to icefinder.se
 
-wget -q http://icefinder.se/2.0b/add.php?date=$FILE_TODAY&password=$PASSWORD
+wget -q -O today.url http://icefinder.se/2.0b/add.php?date=$FILE_TODAY&password=$PASSWORD
 
 ### Renaming combine file (as backup)
 
@@ -51,3 +51,4 @@ rm 1-2-1.jpg
 rm 3-6-7.jpg
 rm 3-6-7_3857.tif
 rm 1-2-1_3857.tif
+rm today.url
