@@ -3,7 +3,7 @@
 
 <Style name="image" filter-mode="first">
   <Rule>
-    <RasterSymbolizer opacity="1" scaling="lanczos" />
+    <RasterSymbolizer opacity="1" scaling="bilinear" />
   </Rule>
 </Style>
 <Layer name="image"
