@@ -26,7 +26,7 @@
 	include("db_password.php");
 
 
-if ($_GET['delete']) {
+if ($_GET['delete'] and $_GET['password'] == $password_add) {
 
 	$length = strlen($_GET['delete']);
 	$length = $length - 9;
