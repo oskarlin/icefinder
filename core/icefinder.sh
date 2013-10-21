@@ -1,10 +1,12 @@
 #!/bin/sh
 # icefinder.sh version 2.0b
-# usage: sh icefinder.sh 
+# usage: sh icefinder.sh password
 
-FILE_TODAY=$(date +"%Y%j") # use this if you want todays files
+PASSWORD="$1"
 
-# FILE_TODAY="2013293"  # use this line if you want a specific date
+# FILE_TODAY=$(date +"%Y%j") # use this if you want todays files
+
+FILE_TODAY="2013293"  # use this line if you want a specific date
 
 
 ### Downloading two JPG files from Earthdata.nasa.gov (extracted from https://earthdata.nasa.gov/labs/worldview/ )
@@ -24,21 +26,24 @@ gdalwarp -s_srs "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs" -t_srs "+proj
 
 python make_satellite.py
 
-
 # I have included the two steps above (gdalwarp and make_satellite.py) to speed up the actual tile generation (below)
 
 ### generate tiles from the combine.jpg which is created with "python make_satellite.py". 
 
 MAPNIK_MAP_FILE="image.xml"
-MAPNIK_TILE_DIR="tiles$FILE_TODAY" 
+MAPNIK_TILE_DIR="tiles$FILE_TODAY"
+MAPNIK_MINZOOM=5
+MAPNIK_MAXZOOM=11
+
 python generate_tiles_imagery.py
 
 ### moving and renaming the catalog to right name
 
 ## Here we put the code for getting the catalog into the right place ##
 
-## Here we put the code for updating the database with todays date ##
+### Adding the date to icefinder.se
 
+wget http://icefinder.se/2.0b/add.php?date=$FILE_TODAY&satellite=0&password=$PASSWORD
 
 ### Renaming combine file (as backup)
 
