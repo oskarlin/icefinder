@@ -1,7 +1,7 @@
 icefinder
 =========
 
-Scripts for icefinder.se
+Ice finder is a website for detecting where there might be ice to skate on. Currently only available in the nordic countries (Sweden, Norway, Finland).
 
 * /core/ catalog is where all the scripts for the server is
 * /web/ is the new 2.0 web
