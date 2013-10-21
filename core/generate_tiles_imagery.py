@@ -200,17 +200,17 @@ if __name__ == "__main__":
         tile_dir = os.environ['MAPNIK_TILE_DIR']
     except KeyError:
         tile_dir = home + "/osm/tiles/"
+    if not tile_dir.endswith('/'):
+        tile_dir = tile_dir + '/'
     try:
         minZoom = os.environ['MAPNIK_MINZOOM']
     except KeyError:
-        tile_dir = 5
+        minZoom = 5
     try:
-        minZoom = os.environ['MAPNIK_MAXZOOM']
+        maxZoom = os.environ['MAPNIK_MAXZOOM']
     except KeyError:
-        tile_dir = 11
+        maxZoom = 11
 
-    if not tile_dir.endswith('/'):
-        tile_dir = tile_dir + '/'
 
     #-------------------------------------------------------------------------
     #
