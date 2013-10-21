@@ -1,21 +1,17 @@
 #!/bin/sh
 # icefinder.sh version 2.0b
-# usage: icefinder.sh [sattelite], for example "icefinder.sh terra"
+# usage: sh icefinder.sh 
 
 # SATELLITE="$1"
 # FILE_TODAY="$1"
 # CAT_NAME="$3"
 
-# FILE_TODAY=$(date +"%Y%j")
+FILE_TODAY=$(date +"%Y%j")
 
-FILE_TODAY="2013293"
+# FILE_TODAY="2013293"
 
-# FILE="BalticSea.$FILE_TODAY.$SATELLITE.721.250m.tif"
-# FILE="BalticSea.$FILE_TODAY.$SATELLITE.250m.tif"
 
-LAYER_TODAY=$(date +"%Y%j")
-
-# Downloading JPG from NASA.
+### Downloading JPG from NASA.
 
 wget -O 1-2-1.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$FILE_TODAY&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_SurfaceReflectance_Bands121&format=image/jpeg&width=12288&height=6827"
 
@@ -45,6 +41,5 @@ MAPNIK_MAP_FILE="image.xml"  MAPNIK_TILE_DIR="tiles$FILE_TODAY"  python generate
 # ncftpput -r 10 -R -v -z -F -u "skridskokartan.se" -p "zdf092T" ftp.skridskokartan.se /icefinder "$SATELLITE.$FILE_TODAY"
 # ncftpput -r 10 -R -v -z -F -u "skridskokartan.se" -p "zdf092T" ftp.skridskokartan.se /icefinder "$SATELLITE.$FILE_TODAY"
 
-# rm BalticSea.$FILE_TODAY.$SATELLITE.367.250m.big.tif
-# rm BalticSea.$FILE_TODAY.$SATELLITE.250m.big.tif
-# rm BalticSea.$FILE_TODAY.$SATELLITE.721.250m.big.tif
+# rm 3-6-7_3857.tif
+# rm 1-2-1_3857.tif

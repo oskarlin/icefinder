@@ -1,16 +1,14 @@
-
-Ice Finder changelog
-
 ## Version 2.0 b1 
 
-Ny domän: icefinder.se
-Ny motor: Leaflet.
-Ny landyta: Sverige, Norge Finland
-Nytt utsnitt.
-Nya zoomlägen.
-Snabbat upp processen rejält med att Satellit-data laddas ner som JPG och genereras till JPG (tidigare TIFF och PNG).
-tiles.icefinder.se ligger hos HP och där ligger alla satellit-tiles.
-Allt på engelska pga Norge/Finland
+* Ny domän: icefinder.se
+* Ny motor: Leaflet.
+* Ny landyta: Sverige, Norge och Finland
+* Nytt utsnitt (4.0, 55.0, 31.0, 70.0).
+* Web mercator projektion.
+* Nya zoomlägen.
+* Snabbat upp processen rejält med att Satellit-data laddas ner som JPG och genereras till JPG (tidigare TIFF och PNG).
+* tiles.icefinder.se ligger hos HP och där ligger alla satellit-tiles.
+* Allt på engelska pga Norge/Finland
 
 ## Version 1.02
 

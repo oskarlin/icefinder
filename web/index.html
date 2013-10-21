@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ice Finder tester</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+
+
+</head>
+<body style="margin:0; padding:0;" >
+
+<div id="map" style="width: 100%; height: 100%; position: absolute; background-image: url(/2.0-tester/img/rutnat.png);"></div>
+
+
+<script>
+
+		var map = L.map('map').setView([59.3186785549, 18.0534747746], 8);
+
+
+
+
+		var colordem = L.tileLayer('tiles_colordem/{z}/{x}/{y}.png', {
+			maxZoom: 11,
+			minZoom: 5,
+			attribution: 'oskarlin'
+		}).addTo(map);
+
+		var land = L.tileLayer('tiles_landyta/{z}/{x}/{y}.png', {
+			maxZoom: 11,
+			minZoom: 5,
+			attribution: 'oskarlin'
+		});
+
+
+		var testlager = L.tileLayer('tiles2013291/{z}/{x}/{y}.jpg', {
+			maxZoom: 11,
+			minZoom: 5,
+			attribution: 'oskarlin'
+		});
+
+
+
+		var frtif = L.tileLayer('tiles2013291_frtif/{z}/{x}/{y}.jpg', {
+			maxZoom: 11,
+			minZoom: 5,
+			attribution: 'oskarlin'
+		}).addTo(map);
+
+
+		var frjpg = L.tileLayer('tiles2013293/{z}/{x}/{y}.jpg', {
+			maxZoom: 11,
+			minZoom: 5,
+			attribution: 'oskarlin'
+		}).addTo(map);
+
+
+
+/*		var utan = L.tileLayer('tiles_utan/{z}/{x}/{y}.png', {
+			maxZoom: 11,
+			minZoom: 5,
+			attribution: 'oskarlin'
+		});
+
+		var med = L.tileLayer('tiles_med/{z}/{x}/{y}.png', {
+			maxZoom: 11,
+			minZoom: 5,
+			attribution: 'oskarlin'
+		});
+		
+		var med24 = L.tileLayer('tiles_med_24/{z}/{x}/{y}.png', {
+			maxZoom: 11,
+			minZoom: 5,
+			attribution: 'oskarlin'
+		});
+		
+				
+		var utanjpg = L.tileLayer('tiles_utan_jpg/{z}/{x}/{y}.png', {
+			maxZoom: 11,
+			minZoom: 5,
+			attribution: 'oskarlin'
+		});
+
+		var jpg = L.tileLayer('tiles_jpg/{z}/{x}/{y}.jpg', {
+			maxZoom: 11,
+			minZoom: 5,
+			attribution: 'oskarlin'
+		}); */
+
+
+
+		var baseMaps = {
+				"frtif": frtif,
+				"frjpg": frjpg
+/*				"Utan GDAL 24 bit": utan,
+		    "Med GDAL, PNG 8 bit": med,
+		    "Med GDAL, PNG 24 bit": med24,
+		    "Utan GDAL, från JPG, PNG24bit": utanjpg,
+		    "Utan GDAL, från JPG, JPG 60": jpg */
+		};
+		
+		var overlayMaps = {
+				"Landyta": land,
+				"Landyta höjd": colordem
+		};
+		
+		
+		L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+
+		
+</script>
+
+</body>
+</html>

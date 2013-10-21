@@ -1,0 +1,36 @@
+
+TRUE COLOR:
+
+wget -O truecolor.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=2013033&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_CorrectedReflectance_TrueColor&format=image/jpeg&width=12288&height=6827"
+
+wget -O 7-2-1.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=2013033&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_CorrectedReflectance_Bands721&format=image/jpeg&width=12288&height=6827"
+
+wget -O 3-6-7.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=2013033&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_CorrectedReflectance_Bands367&format=image/jpeg&width=12288&height=6827"
+
+wget -O temp_night.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=2013033&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_Land_Surface_Temp_Night&format=image/jpeg&width=12288&height=6827"
+
+wget -O 1-2-1.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=2013033&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_SurfaceReflectance_Bands121&format=image/jpeg&width=12288&height=6827"
+
+
+
+http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=2013033&extent=17.542358398438,58.857055664063,19.897827148438,60.331420898438&epsg=4326&layers=MODIS_Terra_SurfaceReflectance_Bands121,sedac_bound&format=image/geotiff&width=1072&height=671
+
+
+http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=2013024&extent=17.842041015625,58.714599609375,19.4482421875,60.1845703125&epsg=4326&layers=MODIS_Terra_SurfaceReflectance_Bands121&format=image/geotiff&width=731&height=669
+
+http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=2013024&extent=17.842041015625,58.714599609375,19.4482421875,60.1845703125&epsg=4326&layers=MODIS_Terra_CorrectedReflectance_Bands367&format=image/geotiff&width=731&height=669
+
+4.0 70.0 31.0 55.0
+
+27 bred - 12288
+15 hög - 6827
+
+
+
+To calculate the size of the Baltic Sea subset, which is 13 degrees high and 22 degrees wide:
+
+Height for 1km: 9/1024 = 13 / height, height = (1024 * 13) / 9 = 1479.11
+Height for 250m: 9/4096 = 13 / height, height = (4096 * 13) / 9 = 5916.44
+
+Width for 1km: 9/1024 = 22 / width, width = (1024 * 22) / 9 = 2503.11
+Width for 250m: 9/4096 = 22 / width, width = (4096 * 22) / 9 = 10012.44
