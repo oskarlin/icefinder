@@ -27,7 +27,7 @@ python make_satellite.py
 
 # I have included the two steps above (gdalwarp and make_satellite.py) to speed up the actual tile generation (below)
 
-### generate tiles
+### generate tiles from the combine.jpg which is created with "python make_satellite.py". 
 
 MAPNIK_MAP_FILE="image.xml"
 MAPNIK_TILE_DIR="tiles$FILE_TODAY" 
