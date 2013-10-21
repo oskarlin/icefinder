@@ -4,9 +4,9 @@
 
 PASSWORD="$1"
 
-# FILE_TODAY=$(date +"%Y%j") # use this if you want todays files
+FILE_TODAY=$(date +"%Y%j") # use this if you want todays files
 
-FILE_TODAY="2013293"  # use this line if you want a specific date
+# FILE_TODAY="2013293"  # use this line if you want a specific date
 
 
 ### Downloading two JPG files from Earthdata.nasa.gov (extracted from https://earthdata.nasa.gov/labs/worldview/ )
@@ -37,13 +37,15 @@ MAPNIK_MAXZOOM=11
 
 python generate_tiles_imagery.py
 
-### moving and renaming the catalog to right name
+### moving catalog to right place
 
-## Here we put the code for getting the catalog into the right place ##
+
+# Here we put the code for getting the catalog into the right place ##
+
 
 ### Adding the date to icefinder.se
 
-wget http://icefinder.se/2.0b/add.php?date=$FILE_TODAY&satellite=0&password=$PASSWORD
+wget http://icefinder.se/2.0b/add.php?date=$FILE_TODAY&password=$PASSWORD
 
 ### Renaming combine file (as backup)
 
