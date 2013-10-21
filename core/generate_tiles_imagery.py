@@ -203,11 +203,11 @@ if __name__ == "__main__":
     if not tile_dir.endswith('/'):
         tile_dir = tile_dir + '/'
     try:
-        minZoom = os.environ['MAPNIK_MINZOOM']
+        minZoom = int(os.environ['MAPNIK_MINZOOM'])
     except KeyError:
         minZoom = 5
     try:
-        maxZoom = os.environ['MAPNIK_MAXZOOM']
+        maxZoom = int(os.environ['MAPNIK_MAXZOOM'])
     except KeyError:
         maxZoom = 11
 
