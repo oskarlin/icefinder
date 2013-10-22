@@ -17,7 +17,7 @@
 
 <Style name="121_2" filter-mode="first">
   <Rule>
-    <RasterSymbolizer opacity="0.4" comp-op="screen" />
+    <RasterSymbolizer opacity="0.4" comp-op="screen" scaling="lanczos" />
   </Rule>
 </Style>
 <Layer name="121_2"
