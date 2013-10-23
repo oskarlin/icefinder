@@ -1,0 +1,90 @@
+changeset:   1:f146e333a3f5
+tag:         qbase
+tag:         gdal2tile-format.patch
+user:        Oliver Tonnhofer <olt@bogosoft.com>
+date:        Tue Dec 04 16:23:58 2007 +0100
+summary:     imported patch gdal2tile-format.patch
+
+diff -r 190b94a0a2e0 -r f146e333a3f5 gdal2tiles.py
+--- a/gdal2tiles.py	Tue Dec 04 15:27:58 2007 +0100
++++ b/gdal2tiles.py	Tue Dec 04 16:23:58 2007 +0100
+@@ -46,10 +46,16 @@ verbose = False
+ verbose = False
+ 
+ tilesize = 256
+-tileformat = 'png'
++default_tileformat = 'png'
+ 
+ tempdriver = gdal.GetDriverByName( 'MEM' )
+-tiledriver = gdal.GetDriverByName( tileformat )
++
++gdal_driver_options = []
++supported_tileformats = {
++    'png': 'PNG',
++    'jpg': 'JPEG',
++    'tiff': 'GTiff',
++}
+ 
+ # =============================================================================
+ def writetile( filename, data, dxsize, dysize, bands):
+@@ -80,7 +86,7 @@ def writetile( filename, data, dxsize, d
+     tmp.WriteRaster( 0, tilesize-dysize, dxsize, dysize, data, band_list=range(1, bands+1))
+  
+     # ... and then copy it into the final tile with given filename
+-    tiledriver.CreateCopy(filename, tmp, strict=0)
++    tiledriver.CreateCopy(filename, tmp, strict=0, options=gdal_driver_options)
+ 
+     return 0
+ 
+@@ -560,6 +566,7 @@ def Usage():
+     print 'Usage: gdal2tiles.py [-title "Title"] [-publishurl http://yourserver/dir/]'
+     print '                     [-nogooglemaps] [-noopenlayers] [-nokml]'
+     print '                     [-googlemapskey KEY] [-forcekml] [-v]'
++    print '                     [-of FORMAT] [-co "NAME=VALUE"]*' 
+     print '                     input_file [output_dir]'
+     print
+ 
+@@ -583,6 +590,8 @@ if __name__ == '__main__':
+     input_file = ''
+     output_dir = ''
+ 
++    tileformat = ''
++
+     isepsg4326 = False
+     generatekml = False
+ 
+@@ -622,6 +631,14 @@ if __name__ == '__main__':
+         elif arg == '-googlemapskey':
+             i += 1
+             googlemapskey = argv[i]
++
++        elif arg == '-of':
++            i += 1
++            tileformat = argv[i]
++
++        elif arg == '-co':
++            i += 1
++            gdal_driver_options.append(argv[i])
+ 
+         elif arg[:1] == '-':
+             print >>sys.stderr, 'Unrecognised command option: ', arg
+@@ -655,6 +672,18 @@ if __name__ == '__main__':
+         publishurl += '/'
+     if publishurl:
+         publishurl += os.path.basename(output_dir) + '/'
++    if not tileformat:
++        tileformat = default_tileformat
++    
++    tileformat = tileformat.lower()
++    # Get gdal driver for tileformat.
++    if tileformat in supported_tileformats:
++        tiledriver_name = supported_tileformats[tileformat]
++        tiledriver = gdal.GetDriverByName( tiledriver_name )
++    else:
++        print >>sys.stderr, "Unsupported format. Use one of %s. png is preferred for KML overlays."\
++                % ', '.join(supported_tileformats.keys())
++        sys.exit( 1 )
+ 
+     # Open input_file and get all necessary information.
+     dataset = gdal.Open( input_file, GA_ReadOnly )
+

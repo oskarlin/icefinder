@@ -33,24 +33,24 @@
 		});
 
 
-		var testlager = L.tileLayer('2013294/{z}/{x}/{y}.jpg', {
-			maxZoom: 11,
-			minZoom: 5,
+/* base layers */
+
+		var mapnik = L.tileLayer('test_mapnik/{z}/{x}/{y}.jpg', {
+			maxZoom: 9,
+			minZoom: 9,
 			attribution: 'oskarlin'
 		}).addTo(map);
 
 
-
-		var frtif = L.tileLayer('tiles2013291_frtif/{z}/{x}/{y}.jpg', {
-			maxZoom: 11,
-			minZoom: 5,
+		var gdal2tiles_patched = L.tileLayer('test_gdal2tiles_patched2/{z}/{x}/{y}.jpg', {
+			maxZoom: 9,
+			minZoom: 9,
 			attribution: 'oskarlin'
 		});
 
-
-		var frjpg = L.tileLayer('tiles2013293/{z}/{x}/{y}.jpg', {
-			maxZoom: 11,
-			minZoom: 5,
+		var gdal_tiler = L.tileLayer('test_gdal_tiler/{z}/{x}/{y}.png', {
+			maxZoom: 9,
+			minZoom: 9,
 			attribution: 'oskarlin'
 		});
 
@@ -90,8 +90,9 @@
 
 
 		var baseMaps = {
-				"testlager": testlager,
-				"frjpg": frjpg
+				"Mapnik": mapnik,
+				"gdal2tiles patched": gdal2tiles_patched,
+				"gdal_tiler.py": gdal_tiler
 /*				"Utan GDAL 24 bit": utan,
 		    "Med GDAL, PNG 8 bit": med,
 		    "Med GDAL, PNG 24 bit": med24,
