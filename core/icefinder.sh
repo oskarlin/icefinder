@@ -33,7 +33,7 @@ python make_satellite.py
 
 # MAPNIK_MAP_FILE="image.xml" MAPNIK_TILE_DIR="$DATE_NASA" MAPNIK_MINZOOM="5" MAPNIK_MAXZOOM="11" python generate_tiles_imagery.py
 
-python gdal2tiles_jpg.py --tile-format="jpeg" -r bilinear -z 7 -s "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs" combined.jpg $DATE_NASA
+python gdal2tiles_jpg.py --tile-format="jpeg" -r bilinear -z 5-11 -s "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs" combined.jpg $DATE_NASA
 
 ### moving catalog to right place
 
