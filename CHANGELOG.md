@@ -1,3 +1,8 @@
+## Version 2.0 b2 test mode
+
+* Switched from Mapnik generate_tiles.py to gdal2tiles.py which speeds up tile generation a lot!
+
+
 ## Version 2.0 b1 test mode
 
 * Ny domän: icefinder.se
