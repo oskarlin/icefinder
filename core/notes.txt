@@ -1,4 +1,26 @@
 
+
+python gdal2tiles_patched.py -r bilinear -z 9 -s "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs" combined.jpg gdal2tiles
+
+
+
+### GENERATE TILES-TIDER FÖR ZOOMLÄGE 9 OCH COMBINED.JPG
+
+script                          tid i min
+
+generate_tiles_imagery.py       
+
+gdal2tiles_patched.py           
+
+gdal_tiler.py                   
+
+
+
+
+
+
+
+
 TRUE COLOR:
 
 wget -O truecolor.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=2013033&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_CorrectedReflectance_TrueColor&format=image/jpeg&width=12288&height=6827"
