@@ -7,10 +7,10 @@
   </Rule>
 </Style>
 <Layer name="121"
-  srs="+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs">
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>121</StyleName>
     <Datasource>
-       <Parameter name="file"><![CDATA[1-2-1_3857.tif]]></Parameter>
+       <Parameter name="file"><![CDATA[1-2-1.jpg]]></Parameter>
        <Parameter name="type"><![CDATA[gdal]]></Parameter>
     </Datasource>
   </Layer>
@@ -21,10 +21,10 @@
   </Rule>
 </Style>
 <Layer name="121_2"
-  srs="+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs">
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>121_2</StyleName>
     <Datasource>
-       <Parameter name="file"><![CDATA[1-2-1_3857.tif]]></Parameter>
+       <Parameter name="file"><![CDATA[1-2-1.jpg]]></Parameter>
        <Parameter name="type"><![CDATA[gdal]]></Parameter>
     </Datasource>
   </Layer>
@@ -34,10 +34,10 @@
   </Rule>
 </Style>
 <Layer name="367"
-  srs="+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs">
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>367</StyleName>
     <Datasource>
-       <Parameter name="file"><![CDATA[3-6-7_3857.tif]]></Parameter>
+       <Parameter name="file"><![CDATA[3-6-7.jpg]]></Parameter>
        <Parameter name="type"><![CDATA[gdal]]></Parameter>
     </Datasource>
   </Layer>
