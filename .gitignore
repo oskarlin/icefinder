@@ -23,7 +23,9 @@
 
 # Images #
 *.tif
-*jpg
+*.jpg
+*.png
+*.png.aux.xml
 
 # Logs and databases #
 ######################
