@@ -3,6 +3,8 @@
 python gdal2tiles_patched.py -r bilinear -z 9 -s "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs" combined.jpg gdal2tiles
 
 
+python gdal2tiles_jpg.py --tile-format="jpeg" -r bilinear -z 9 -s "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs" combined.jpg test_gdal2tiles_jpg
+
 
 ### GENERATE TILES-TIDER FÖR ZOOMLÄGE 9 OCH COMBINED.JPG
 
