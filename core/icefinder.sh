@@ -25,10 +25,7 @@ wget -O 3-6-7.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$D
 ### Create a big JPG with the two layers using make_satellite.py with the imagery.xml script
 
 echo "generating combined image..."
-
 python make_satellite.py
-
-echo "Done generating combined image..."
 
 # I have included make_satellite.py to speed up the actual tile generation (below)
 
@@ -40,17 +37,17 @@ python gdal2tiles_jpg.py --tile-format="jpeg" -r bilinear -z 7 -s "+proj=merc +l
 
 ### moving catalog to right place
 
-# Here we put the code for getting the catalog into the right place ##
+
+######
+## Here we put the code for getting the catalog into the right place ##
+######
+
 
 ### Adding the date to icefinder.se
 
 echo "Adding to database..."
 
-echo "http://www.icefinder.se/2.0b/add.php?date=$DATE_DATABASE&password=$PASSWORD"
-
 wget -q -O result.html "http://www.icefinder.se/2.0b/add.php?date=$DATE_DATABASE&password=$PASSWORD"
-
-echo "done!"
 
 ### Renaming combine file (as backup)
 
@@ -64,4 +61,6 @@ rm result.html
 rm $DATE_NASA/googlemaps.html
 rm $DATE_NASA/openlayers.html
 rm $DATE_NASA/tilemapresource.xml
+
+echo "Done!"
 
