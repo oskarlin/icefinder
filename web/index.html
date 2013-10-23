@@ -45,7 +45,8 @@
 		var gdal2tiles_patched = L.tileLayer('test_gdal2tiles_patched2/{z}/{x}/{y}.jpg', {
 			maxZoom: 9,
 			minZoom: 9,
-			attribution: 'oskarlin'
+			attribution: 'oskarlin',
+			tms: true
 		});
 
 		var gdal_tiler = L.tileLayer('test_gdal_tiler/{z}/{x}/{y}.png', {
