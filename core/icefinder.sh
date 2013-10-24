@@ -4,11 +4,11 @@
 
 PASSWORD="$1"
 
-# DATE_NASA=$(date +"%Y%j") # use this if you want todays files
-# DATE_DATABASE=$(date +"%Y-%m-%d")
+DATE_NASA=$(date +"%Y%j") # use this if you want todays files
+DATE_DATABASE=$(date +"%Y-%m-%d")
 
-DATE_NASA="2013293"  # use this line if you want a specific date
-DATE_DATABASE="2013-10-20" # and this
+# DATE_NASA="2013293"  # use this line if you want a specific date
+# DATE_DATABASE="2013-10-20" # and this
 
 ### Downloading two JPG files from Earthdata.nasa.gov (extracted from https://earthdata.nasa.gov/labs/worldview/ )
 
