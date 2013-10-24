@@ -87,9 +87,29 @@ $('#prev').click(function() {
 			$("#next").removeClass("last");
 		} 
 
+		var dateprocessed = transformdate();
+		$("#activedate").text(dateprocessed);
+
 	}
 });
 
+
+function transformdate() {
+		currentdateyear = satellite_layers[currentlayernumber].substring(0,4);
+		currentdatedays = satellite_layers[currentlayernumber].substring(4,8);
+		var date = new Date(currentdateyear);
+		date = new Date(date.setDate(currentdatedays));
+			
+		var newDate = date.getDate();
+		if (newDate < 10) { newDate = "0" + newDate; }
+	
+		var newMonth = date.getMonth()+1;
+		
+		if (newMonth < 10) { newMonth = "0" + newMonth; }
+		var newYear = date.getFullYear();
+	
+		return newYear + "-" + newMonth + "-" + newDate;
+}
 
 
 
@@ -104,6 +124,15 @@ $('#next').click(function() {
 					
 		currentlayernumber--;
 		
+	 	map.removeLayer(activesatellite);
+	
+		activesatellite = L.tileLayer(satellite_layers[currentlayernumber] + "/{z}/{x}/{y}.jpg", {   	
+			maxZoom: 7,
+			minZoom: 7,
+			attribution: 'oskarlin',
+			tms: true
+		}).addTo(map).bringToBack();
+	
 		if (currentlayernumber < (length-1)) {
 			$("#prev").removeClass("first");
 		} 
@@ -111,22 +140,29 @@ $('#next').click(function() {
 			$("#next").addClass("last");
 		} 
 
- 	map.removeLayer(activesatellite);
-
-	activesatellite = L.tileLayer(satellite_layers[currentlayernumber] + "/{z}/{x}/{y}.jpg", {   	
-		maxZoom: 7,
-		minZoom: 7,
-		attribution: 'oskarlin',
-		tms: true
-	}).addTo(map).bringToBack();
-
+		var dateprocessed = transformdate();
+		$("#activedate").text(dateprocessed);
 		
 	}
 
 
 });
 
+var togglelist = 1;
 
+$("#togglelist").click(function() {
+
+	if (togglelist) {	
+		$("#satellites").hide('fast');
+		$("#togglelistbutton").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+		togglelist = 0;
+	} else {
+		$("#satellites").show('fast');
+		$("#togglelistbutton").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+		togglelist = 1;
+	}
+	
+});
 
 
 /*	var date = new Date(currentlayerdate);

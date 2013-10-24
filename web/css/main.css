@@ -278,18 +278,26 @@ a:visited {
 	width:250px;
 	margin-left:-100px;
 	left:50%;
-	background-color: rgba(237,237,237,1)
+	background-color: rgba(237,237,237,0.7);
+	font-weight: bold;
 }    		
 
 
 
-#active .fa, #activedate  {
+#active .fa, #togglelist span  {
 	cursor: pointer;
 }
 
+#activedate {
+	color: #4a4a4a;
+}
+
+#prev, #next, #togglelistbutton {
+	color: rgb(255,0,135);
+}
 
 #active .last, #active .first {
-	color: gray;
+	color: gray !important;
 	cursor: default;
 }
 
@@ -299,18 +307,27 @@ a:visited {
 	text-align: center;
 }
 
+#togglelistbutton:hover, #prev:hover, #next:hover {
+	color: rgba(201,0,95,1);
+	
+}
+
 #active, #togglelist {
 	font-size: 30px;
-	color: rgb(255,0,135);
 }
 
 
 #togglelist {
 	text-align: center;
+	margin-top:-15px;
+	padding:0;
 }
 
 
-
+#satellites {
+	height: 400px;
+	overflow-y:auto;
+}
 
 
 
