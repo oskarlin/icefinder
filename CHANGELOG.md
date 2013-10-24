@@ -1,4 +1,4 @@
-## Version 2.0 b3 public beta 1
+## Version 2.0 b3 public beta
 
 * Layer control for going back and forth through available dates OK.
 * Public on http://www.icefinder.se/2.0b/
