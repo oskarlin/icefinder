@@ -142,18 +142,10 @@ body {
 }
     		
 
-#datepicker {
-	position: absolute;
-	top: 0px;
-	z-index: 2;
-	width:200px;
-	margin-left:-100px;
-	left:50%;
-	border: 1px solid red;
-}    		
     		
     		
 #toc {
+		display: none;
 		background-color: #eeeeee;
 		position: absolute;
 		top: 60px;
@@ -197,7 +189,7 @@ body {
 }
 
 #overlays > li:before {
-  font-family: "FontAwesome";
+  font-family: FontAwesome;
   content: "\f096";
 	font-style: normal;
 }
@@ -273,6 +265,55 @@ a#permalink {
 a:visited {
 	color: #FF0087;
 }
+
+
+
+/* new layer control */
+
+
+#datepicker {
+	position: absolute;
+	top: 0px;
+	z-index: 2;
+	width:250px;
+	margin-left:-100px;
+	left:50%;
+	background-color: rgba(237,237,237,1)
+}    		
+
+
+
+#active .fa, #activedate  {
+	cursor: pointer;
+}
+
+
+#active .last, #active .first {
+	color: gray;
+	cursor: default;
+}
+
+#active {
+	margin-top: 10px;
+	padding: 5px;
+	text-align: center;
+}
+
+#active, #togglelist {
+	font-size: 30px;
+	color: rgb(255,0,135);
+}
+
+
+#togglelist {
+	text-align: center;
+}
+
+
+
+
+
+
 
 /* ==========================================================================
    Helper classes

@@ -30,7 +30,79 @@
     <div id="logo"><img src="img/logo2.0.png"></div>
     
     <div id="datepicker">
-	    hej
+    		<div id="active"><span class="fa fa-chevron-left" id="prev"></span> 
+
+
+    		
+	    		
+					<?php 
+					
+					include("db_password.php");
+					
+					$query = "SELECT * FROM satellite ORDER BY date DESC limit 1" ;
+					$list = mysql_query($query, $link) or die("Fr?gan misslyckades: " . mysql_error());
+					
+					while ($satellites = mysql_fetch_array($list, MYSQL_ASSOC)) {
+					
+						$timestamp = strtotime($satellites['date']);
+						
+						$year = date("Y", $timestamp);
+						$yeardate = date("z", $timestamp) + 1;
+						$yeardatelength = strlen($yeardate);
+						
+						if ($yeardatelength < 2) { $listdate = $year . "00" . $yeardate; }
+						else if ($yeardatelength < 3) { $listdate = $year . "0" . $yeardate; }
+						else { $listdate = $year . $yeardate; }
+						
+						echo '<span id="activedate" data-date="' . $listdate;
+						echo '">' . $satellites['date'] . '</span>' . "\n"; 
+					
+					}
+					
+					?>
+
+	    	  <span class="fa fa-chevron-right last" id="next"></span>
+    	  </div>
+    	  
+		  	<ul id="satellites">
+
+	
+					<?php
+				
+				
+					$query = "SELECT * FROM satellite ORDER BY date DESC" ;
+					$list = mysql_query($query, $link) or die("Fr?gan misslyckades: " . mysql_error());
+				
+					$first = 1;
+					
+					while ($satellites = mysql_fetch_array($list, MYSQL_ASSOC)) {
+					
+						$timestamp = strtotime($satellites['date']);
+						
+						$year = date("Y", $timestamp);
+						$yeardate = date("z", $timestamp) + 1;
+						$yeardatelength = strlen($yeardate);
+						
+						if ($yeardatelength < 2) { $listdate = $year . "00" . $yeardate; }
+						else if ($yeardatelength < 3) { $listdate = $year . "0" . $yeardate; }
+						else { $listdate = $year . $yeardate; }
+					
+						echo '<li data-date="' . $listdate . '" class="';
+						
+						if ($first) { 
+							echo 'active'; $first = 0; 
+							$mostrecent_satellite = $satellites['date'];
+						}
+						
+						echo '">' . $satellites['date'] . ' ' . $type . '</li>' . "\n"; 
+							
+					}
+				
+				?>
+		  	</ul>
+
+	    	<div id="togglelist"><span class="fa fa-chevron-up"></span></div>
+
 	    
     </div>
 	
@@ -45,8 +117,6 @@
 
 <?php 
 	
-
-	include("db_password.php");
 
 	$query = "SELECT * FROM satellite ORDER BY date DESC" ;
 	$list = mysql_query($query, $link) or die("Fr?gan misslyckades: " . mysql_error());
