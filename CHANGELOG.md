@@ -1,7 +1,11 @@
+## Version 2.0 b3 public beta 1
+
+* Layer control for going back and forth through available dates OK.
+* Public on http://www.icefinder.se/2.0b/
+
 ## Version 2.0 b2 test mode
 
 * Switched from Mapnik generate_tiles.py to gdal2tiles.py which speeds up tile generation a lot!
-
 
 ## Version 2.0 b1 test mode
 
