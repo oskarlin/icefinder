@@ -123,19 +123,35 @@ body {
     
     
 #logo {
-	background: url(../images/logo.png) -10px 0px no-repeat;
 		position: absolute;
-		top: 0px;
-		left: 0px;
-		width: 210px;
+		top: 10px;
+		left: 10px;
+		width: 300px;
 		height: 60px;
 		z-index: 5000;
+}
+
+#logo img {
+	width: 300px;
+	height: auto;
 }
 
 .olControlPanZoomBar {
 	top: 40px !important;
 	
 }
+    		
+
+#datepicker {
+	position: absolute;
+	top: 0px;
+	z-index: 2;
+	width:200px;
+	margin-left:-100px;
+	left:50%;
+	border: 1px solid red;
+}    		
+    		
     		
 #toc {
 		background-color: #eeeeee;
@@ -149,10 +165,7 @@ body {
 		box-shadow:  0px 0px 5px 5px rgba(0, 0, 0, 0.3);
 		-webkit-border-radius: 7px;
 		border-radius: 7px;
-		font-size: 12px; 		
-	
-	
-	
+		font-size: 12px; 			
 }
 	#toc a {
 		text-decoration: none;

@@ -14,7 +14,7 @@
 	
 	  <link rel="stylesheet" href="css/normalize.css">
 	  <link rel="stylesheet" href="css/main.css">
-	  <link rel="stylesheet" href="css/font-awesome.css">
+	  <link rel="stylesheet" href="css/font-awesome.min.css">
 	  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
 	  <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 	  <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
@@ -27,7 +27,12 @@
     <!-- Add your site or application content here -->
 	
 	
-    <div id="logo"></div>
+    <div id="logo"><img src="img/logo2.0.png"></div>
+    
+    <div id="datepicker">
+	    hej
+	    
+    </div>
 	
 	
 	  <div id="toc">
@@ -72,9 +77,9 @@
 		  	</ul>
 		  	<h3>Andra lager</h3>
 		  	<ul id="overlays">
-		  		<li id="demlayer" class="active"> Landcover with elevation</li>
-		  		<li id="overlayer" class="inactive"> Landcover</li>
-		  		<li id="kollektivlayer" class="inactive"> Ferries</li>
+		  		<li id="tiles_colordem" class="active"> Landcover with elevation</li>
+		  		<li id="tiles_landcover" class=""> Landcover</li>
+		  		<!--<li id="tiles_ferries" class="inactive"> Ferries</li>-->
 		  	</ul>
 		  	<div id="perma_div"><a href="#" id="permalink">Permalänk hit</a></div>
 		  	<div id="donate">

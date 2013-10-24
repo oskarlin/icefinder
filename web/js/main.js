@@ -34,9 +34,8 @@
 	
 */
 		
-var map = L.map('map').setView([59.3186785549, 18.0534747746], 7);
-
-
+var map = L.map('map', {zoomControl: false}).setView([59.3186785549, 18.0534747746], 7);
+new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
 /* sattelite-layers */
 
@@ -70,81 +69,37 @@ for (var i = 0; i < length; i++) {
 } */
 
 
-var baseMaps = {
-	"Idag": activesatellite
-/*		"Mapnik": mapnik,
-		"gdal2tiles patched": gdal2tiles_patched,
-		"gdal_tiler.py": gdal_tiler
-				"Utan GDAL 24 bit": utan,
-    "Med GDAL, PNG 8 bit": med,
-    "Med GDAL, PNG 24 bit": med24,
-    "Utan GDAL, från JPG, PNG24bit": utanjpg,
-    "Utan GDAL, från JPG, JPG 60": jpg */
-};
-		
 
-var colordem = L.tileLayer('tiles_colordem/{z}/{x}/{y}.png', {
-	maxZoom: 11,
-	minZoom: 5,
-	attribution: 'oskarlin'
-}).addTo(map);
+var overlaylayers = {};
+           
 
-var land = L.tileLayer('tiles_landyta/{z}/{x}/{y}.png', {
-	maxZoom: 11,
-	minZoom: 5,
-	attribution: 'oskarlin'
+$('#overlays').children().each(function(){
+
+	var layername = $(this).attr("id");
+	
+//	alert (layername);
+	
+	var currlayer = new L.tileLayer(layername + '/{z}/{x}/{y}.png', {
+		maxZoom: 11,
+		minZoom: 5,
+		attribution: 'oskarlin'
+	});
+ 
+  overlaylayers[layername] = currlayer;
+  
+//  overlaylayers[layername].addTo(map);
+  
 });
+
+
+overlaylayers['tiles_colordem'].addTo(map).bringToFront();
+
 
 
 
 /* layer controls */
 
 
-var overlayMaps = {
-		"Landcover elev": colordem,
-		"Landcover": land
-};
-		
-		
-L.control.layers(baseMaps, overlayMaps).addTo(map);
-
-
-
-
-/* overlays openlayers */
-
-/*   var overlayer = new OpenLayers.Layer.XYZ("overlayer", "modis_overlay/${z}/${x}/${y}.png", {
-  	numZoomLevels: 7, 
-  	alpha: true, 
-  	isBaseLayer: false, 
-  	attribution: '<a href="http://www.norstedts.se/kartor/">Norstedts Kartor</a>'
-  	});
-
-  var kollektivlayer = new OpenLayers.Layer.XYZ("kollektivlayer", "modis_sl/${z}/${x}/${y}.png", {
-  	numZoomLevels: 7, 
-  	alpha: true, 
-  	isBaseLayer: false, 
-  	attribution: 'SL and Waxholmsbolaget',
-  	visibility: false
-		}); 
-		
-		*/
-
-  
-/*  map.addLayers([overlayer, kollektivlayer]);
-    if (!map.getCenter()) map.zoomToMaxExtent(); */
-        
-
-
-
-
-/* permalink */
-
-/*
-map.addControl (OpenLayers.Control.Permalink({
-	div: document.getElementById('permalink')
-}));
-*/
 
 /* click on base-layers */
 
@@ -160,7 +115,7 @@ $('#modis > li').click(function() {
 		minZoom: 7,
 		attribution: 'oskarlin',
 		tms: true
-	}).addTo(map);
+	}).addTo(map).bringToBack();
 	
 
 /* 	baselayer = bing;
@@ -189,17 +144,32 @@ $('#overlays > li').click(function() {
 
 	var currentlayername = $(this).attr('id');
 		
-	var currentlayer = map.getLayersByName(currentlayername)[0];
+	if ($(this).hasClass("active")){
+		map.removeLayer(overlaylayers[currentlayername]);
 
-	$(this).toggleClass('active');
-	
-	if (currentlayer.visibility == true) {
-		currentlayer.setVisibility(false);
 	} else {
-		currentlayer.setVisibility(true);
-	}				
+		if (currentlayername == "tiles_landcover") {
+			map.removeLayer(overlaylayers["tiles_colordem"]);
+			$("#tiles_colordem").removeClass('active');
+		}
+		if (currentlayername == "tiles_colordem") {
+			map.removeLayer(overlaylayers["tiles_landcover"]);
+			$("#tiles_landcover").removeClass('active');
+		}
+		map.addLayer(overlaylayers[currentlayername]);
+	}
+
+	
+	$(this).toggleClass('active');
+
+	
 });
-			
+
+
+/* lägg satellitlagret i botten */
+
+activesatellite.bringToBack();
+
 	               
 $('#toc-toggle').click(function() {
   $('#toc-content').slideToggle('fast', function() {
