@@ -143,47 +143,14 @@
 	  	<div id="toc-toggle"><i class="icon-reorder"></i></div>
 	  	<!-- slut mobil -->
 	  	<div id="toc-content">
-		  	<h3>Satellitlager</h3>
-		  	<ul id="modis">
-
-<?php 
-	
-
-	$query = "SELECT * FROM satellite ORDER BY date DESC" ;
-	$list = mysql_query($query, $link) or die("Fr?gan misslyckades: " . mysql_error());
-
-	$first = 1;
-	
-	while ($satellites = mysql_fetch_array($list, MYSQL_ASSOC)) {
-	
-		$timestamp = strtotime($satellites['date']);
-		
-		$year = date("Y", $timestamp);
-		$yeardate = date("z", $timestamp) + 1;
-		$yeardatelength = strlen($yeardate);
-		
-		if ($yeardatelength < 2) { $listdate = $year . "00" . $yeardate; }
-		else if ($yeardatelength < 3) { $listdate = $year . "0" . $yeardate; }
-		else { $listdate = $year . $yeardate; }
-	
-		echo '<li data-date="' . $listdate . '" class="';
-		
-		if ($first) { echo 'active'; $first = 0; }
-		
-		echo '">' . $satellites['date'] . ' ' . $type . '</li>' . "\n"; 
-			
-	}
-
-?>
-		  	</ul>
-		  	<h3>Andra lager</h3>
+		  	<h3>Overlays</h3>
 		  	<ul id="overlays">
 		  		<li id="tiles_colordem" class="active"> Landcover with elevation</li>
 		  		<li id="tiles_landcover" class=""> Landcover</li>
 		  		<!--<li id="tiles_ferries" class="inactive"> Ferries</li>-->
 		  	</ul>
-		  	<div id="perma_div"><a href="#" id="permalink">Permalänk hit</a></div>
-		  	<div id="donate">
+		  	<!-- <div id="perma_div"><a href="#" id="permalink">Permalänk hit</a></div>-->
+<!--		  	<div id="donate">
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 					<input type="hidden" name="cmd" value="_s-xclick">
 					<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHPwYJKoZIhvcNAQcEoIIHMDCCBywCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYCgU3IWy1GzQ1/JZXyw4+/A9JmR01I0yFfXIcrIJVjEVABdlQVr/K1PhCMYEMCDrhLMyK3Iw6JEuVl9XrNIrMhYwed4sU191JQb8Hy7KY75A+OJM0Oh99QVcj9YCf7ihQiYnDKCe5SlGTY9E7fQ5npf6v7vUDlSgdAH0sWRgWWAhzELMAkGBSsOAwIaBQAwgbwGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI2/r5IUJe/D2AgZib9ZxVPaIOurVs+FamOjJQ3+p2pW61dMGuUdqOwAjgZRhBRMp88iNvgLAlWS//PDu6ukhLtM/1K+Cy2sTrRbBqBbT/FUXxNEep3NBGobAYz93sxZMxib33yKQyqzteTQUOxSfzqPIz0NzAQ6ItayXQZjzRJ+baAhKrzP4A2OU6Elv6bG0UKwzEcB+qyUMH9XB+TuIXU7G0QqCCA4cwggODMIIC7KADAgECAgEAMA0GCSqGSIb3DQEBBQUAMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTAeFw0wNDAyMTMxMDEzMTVaFw0zNTAyMTMxMDEzMTVaMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAwUdO3fxEzEtcnI7ZKZL412XvZPugoni7i7D7prCe0AtaHTc97CYgm7NsAtJyxNLixmhLV8pyIEaiHXWAh8fPKW+R017+EmXrr9EaquPmsVvTywAAE1PMNOKqo2kl4Gxiz9zZqIajOm1fZGWcGS0f5JQ2kBqNbvbg2/Za+GJ/qwUCAwEAAaOB7jCB6zAdBgNVHQ4EFgQUlp98u8ZvF71ZP1LXChvsENZklGswgbsGA1UdIwSBszCBsIAUlp98u8ZvF71ZP1LXChvsENZklGuhgZSkgZEwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEAgV86VpqAWuXvX6Oro4qJ1tYVIT5DgWpE692Ag422H7yRIr/9j/iKG4Thia/Oflx4TdL+IFJBAyPK9v6zZNZtBgPBynXb048hsP16l2vi0k5Q2JKiPDsEfBhGI+HnxLXEaUWAcVfCsQFvd2A1sxRr67ip5y2wwBelUecP3AjJ+YcxggGaMIIBlgIBATCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwCQYFKw4DAhoFAKBdMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEzMDEyMzE3MTUwOFowIwYJKoZIhvcNAQkEMRYEFELS8AWRu8JpcHQofkpFgKteF4WyMA0GCSqGSIb3DQEBAQUABIGAU9FMb9i95QlhdlkbXwvogOQR/5iFEfbPSV6tuq8BZo7Tb1MLkbB4IeYDf83d3l+gyaJXT+L3rmahiOO81hhi7O6R138binGHituFxWUu6Tl4qeWMLp1LE7Xzy4hk86yxsx1Ues/hnulMhmhRlNSex3MhuJtLgxBuT3JzkB2UJnc=-----END PKCS7-----
@@ -192,7 +159,7 @@
 					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 					</form>
 
-				</div>
+				</div> -->
 	  	</div>
 	  </div>
 	  <div id="map"></div>

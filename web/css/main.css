@@ -141,20 +141,17 @@ body {
 	
 }
     		
-
-    		
     		
 #toc {
-		display: none;
 		background-color: #eeeeee;
 		position: absolute;
-		top: 60px;
-		right: 20px;
+		top: 70px;
+		right: 10px;
 		margin: 0;
 		height: auto;
 		z-index: 5000;
-		-webkit-box-shadow:  0px 0px 5px 5px rgba(0, 0, 0, 0.3);
-		box-shadow:  0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+		-webkit-box-shadow:  rgba(0, 0, 0, 0.648438) 0px 1px 7px 0px;
+		box-shadow: rgba(0, 0, 0, 0.648438) 0px 1px 7px 0px;
 		-webkit-border-radius: 7px;
 		border-radius: 7px;
 		font-size: 12px; 			
@@ -280,7 +277,10 @@ a:visited {
 	left:50%;
 	background-color: rgba(237,237,237,0.7);
 	font-weight: bold;
-}    		
+	border-radius: 0px 0px 7px 7px;
+}
+
+
 
 
 
@@ -321,12 +321,14 @@ a:visited {
 	text-align: center;
 	margin-top:-15px;
 	padding:0;
+	display: none;
 }
 
 
 #satellites {
 	height: 400px;
 	overflow-y:auto;
+	display: none;
 }
 
 
