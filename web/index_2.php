@@ -43,7 +43,7 @@
 
 	include("db_password.php");
 
-	$query = "SELECT * FROM modis ORDER BY date DESC" ;
+	$query = "SELECT * FROM satellite ORDER BY date DESC" ;
 	$list = mysql_query($query, $link) or die("Fr?gan misslyckades: " . mysql_error());
 
 	$first = 1;
@@ -59,12 +59,8 @@
 		if ($yeardatelength < 2) { $listdate = $year . "00" . $yeardate; }
 		else if ($yeardatelength < 3) { $listdate = $year . "0" . $yeardate; }
 		else { $listdate = $year . $yeardate; }
-
-		if ($satellites['satellite'] == 1) { $type = "aqua"; } 
-		else if ($satellites['satellite'] == 0) { $type = "terra"; }
-		else if ($satellites['satellite'] == 2) { $type = "special"; } 
 	
-		echo '<li id="'. $type . "." . $listdate . '" class="';
+		echo '<li data-date="' . $listdate . '" class="';
 		
 		if ($first) { echo 'active'; $first = 0; }
 		
@@ -118,17 +114,13 @@
 		if ($yeardatelength < 2) { $listdate = $year . "00" . $yeardate; }
 		else if ($yeardatelength < 3) { $listdate = $year . "0" . $yeardate; }
 		else { $listdate = $year . $yeardate; }
-
-		if ($satellites['satellite'] == 1) { $type = "aqua"; } 
-		else if ($satellites['satellite'] == 0) { $type = "terra"; }
-		else if ($satellites['satellite'] == 2) { $type = "special"; } 
 	
 		if ($first) {
 			echo '"' . $listdate . '"';
 			$first = 0;
 			
 		} else {
-			echo '"' . $listdate . '"';
+			echo ', "' . $listdate . '"';
 		}			
 	}
 		  		  
