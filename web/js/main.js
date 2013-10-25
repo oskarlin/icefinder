@@ -15,9 +15,9 @@ new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
 /* sattelite-layers */
 
-activesatellite = L.tileLayer(satellite_layers[0] + "/{z}/{x}/{y}.jpg", {   	
-		maxZoom: 7,
-		minZoom: 7,
+activesatellite = L.tileLayer("http://tiles.icefinder.se/" + satellite_layers[0] + "/{z}/{x}/{y}.jpg", {   	
+		maxZoom: 11,
+		minZoom: 5,
 		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>',
 		tms: true
 	}).addTo(map);
@@ -69,9 +69,9 @@ $('#prev').click(function() {
 
 	 	map.removeLayer(activesatellite);
 	
-		activesatellite = L.tileLayer(satellite_layers[currentlayernumber] + "/{z}/{x}/{y}.jpg", {   	
-			maxZoom: 7,
-			minZoom: 7,
+		activesatellite = L.tileLayer("http://tiles.icefinder.se/" + satellite_layers[currentlayernumber] + "/{z}/{x}/{y}.jpg", {   	
+			maxZoom: 11,
+			minZoom: 5,
 			attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>',
 			tms: true
 		}).addTo(map).bringToBack();
@@ -121,10 +121,10 @@ $('#next').click(function() {
 		currentlayernumber--;
 		
 	 	map.removeLayer(activesatellite);
-	
-		activesatellite = L.tileLayer(satellite_layers[currentlayernumber] + "/{z}/{x}/{y}.jpg", {   	
-			maxZoom: 7,
-			minZoom: 7,
+		
+		activesatellite = L.tileLayer("http://tiles.icefinder.se/" + satellite_layers[currentlayernumber] + "/{z}/{x}/{y}.jpg", {   	
+			maxZoom: 11,
+			minZoom: 5,
 			attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>',
 			tms: true
 		}).addTo(map).bringToBack();
@@ -196,8 +196,8 @@ $('#modis > li').click(function() {
  	map.removeLayer(activesatellite);
 
 	activesatellite = L.tileLayer(currentlayername + "/{z}/{x}/{y}.jpg", {   	
-		maxZoom: 7,
-		minZoom: 7,
+		maxZoom: 11,
+		minZoom: 5,
 		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>',
 		tms: true
 	}).addTo(map).bringToBack();
