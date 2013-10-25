@@ -63,7 +63,7 @@ rm combined.tif
 
 ### Posting to Twitter!
 
-python tweet.py Todays images are now online on Ice Finder! http://www.icefinder.se"
+python tweet.py "Todays images are now online on Ice Finder! http://www.icefinder.se"
 
 echo "Done!"
 
