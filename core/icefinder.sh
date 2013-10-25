@@ -26,22 +26,19 @@ wget -O 3-6-7.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$D
 ### Create a big JPG with the two layers using make_satellite.py with the imagery.xml script
 
 echo "generating combined image..."
-python make_satellite.py
+python make_satellite.py   # I have included make_satellite.py to speed up the actual tile generation (below)
 
-# I have included make_satellite.py to speed up the actual tile generation (below)
+### Create a TIF which has the content tiled.
 
-### generate tiles from the combine.jpg which is created with "python make_satellite.py". 
+echo "converting to tiled TIF" 
+gdal_translate combined.jpg combined.tif -co "TILED=YES" # This is also for speeding up tile making
 
-# MAPNIK_MAP_FILE="image.xml" MAPNIK_TILE_DIR="$DATE_NASA" MAPNIK_MINZOOM="5" MAPNIK_MAXZOOM="11" python generate_tiles_imagery.py
+### generate tiles from the combine.tif.
+### Going back to Mapnik since gdal2tiles makes ugly tiles (no nice resampling)
 
-python gdal2tiles_jpg.py --tile-format="jpeg" -r bilinear -z 5-11 -s "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs" combined.jpg $TILEPATH/$DATE_NASA
+MAPNIK_MAP_FILE="image.xml" MAPNIK_TILE_DIR="$TILEPATH/$DATE_NASA" MAPNIK_MINZOOM="5" MAPNIK_MAXZOOM="11" python generate_tiles_imagery.py
 
-### moving catalog to right place
-
-
-######
-## Here we put the code for getting the catalog into the right place ##
-######
+# python gdal2tiles_jpg.py --tile-format="jpeg" -r bilinear -z 5-11 -s "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs" combined.jpg $TILEPATH/$DATE_NASA
 
 
 ### Adding the date to icefinder.se
@@ -62,6 +59,7 @@ rm result.html
 rm $DATE_NASA/googlemaps.html
 rm $DATE_NASA/openlayers.html
 rm $DATE_NASA/tilemapresource.xml
+rm combined.tif
 
 echo "Done!"
 

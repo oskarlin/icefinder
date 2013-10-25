@@ -227,6 +227,7 @@ if __name__ == "__main__":
 #    minZoom = 8
 #    maxZoom = 11
     bbox = (4.0, 55, 31, 70)
+#    bbox = (29, 69, 31, 70)
     render_tiles(bbox, mapfile, tile_dir, minZoom, maxZoom)
 
 
