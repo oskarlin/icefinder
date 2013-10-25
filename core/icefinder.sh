@@ -61,5 +61,9 @@ rm $DATE_NASA/openlayers.html
 rm $DATE_NASA/tilemapresource.xml
 rm combined.tif
 
+### Posting to Twitter!
+
+python tweet.py Todays images are now online on Ice Finder! http://www.icefinder.se"
+
 echo "Done!"
 
