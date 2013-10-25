@@ -46,3 +46,4 @@ Thumbs.db
 # Secret files #
 db_password.php
 db_password_old.php
+tweet.py
