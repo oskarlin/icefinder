@@ -18,8 +18,7 @@ new L.Control.Zoom({ position: 'topright' }).addTo(map);
 activesatellite = L.tileLayer("http://tiles.icefinder.se/" + satellite_layers[0] + "/{z}/{x}/{y}.jpg", {   	
 		maxZoom: 11,
 		minZoom: 5,
-		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>',
-		tms: true
+		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
 	}).addTo(map);
 
 
@@ -72,8 +71,7 @@ $('#prev').click(function() {
 		activesatellite = L.tileLayer("http://tiles.icefinder.se/" + satellite_layers[currentlayernumber] + "/{z}/{x}/{y}.jpg", {   	
 			maxZoom: 11,
 			minZoom: 5,
-			attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>',
-			tms: true
+			attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
 		}).addTo(map).bringToBack();
 		
 		if (currentlayernumber == (length-1)) {
@@ -125,8 +123,7 @@ $('#next').click(function() {
 		activesatellite = L.tileLayer("http://tiles.icefinder.se/" + satellite_layers[currentlayernumber] + "/{z}/{x}/{y}.jpg", {   	
 			maxZoom: 11,
 			minZoom: 5,
-			attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>',
-			tms: true
+			attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
 		}).addTo(map).bringToBack();
 	
 		if (currentlayernumber < (length-1)) {
@@ -141,23 +138,64 @@ $('#next').click(function() {
 		
 	}
 
-
 });
 
-var togglelist = 1;
+var togglelist = 0;
 
 $("#togglelist").click(function() {
 
 	if (togglelist) {	
-		$("#satellites").hide('fast');
+		$("#satellites").slideUp();
 		$("#togglelistbutton").removeClass("fa-chevron-up").addClass("fa-chevron-down");
 		togglelist = 0;
 	} else {
-		$("#satellites").show('fast');
+		$("#satellites").slideDown();
 		$("#togglelistbutton").removeClass("fa-chevron-down").addClass("fa-chevron-up");
 		togglelist = 1;
 	}
 	
+});
+
+
+$('#satellites > li').click(function() {
+	
+	var currentlayername = $(this).attr('data-date');
+	var currentlayerdate = $(this).html();
+
+	$("#activedate").attr('data-date', currentlayername); 
+	$("#activedate").text(currentlayerdate); 
+
+ 	map.removeLayer(activesatellite);
+	
+	activesatellite = L.tileLayer("http://tiles.icefinder.se/" + currentlayername + "/{z}/{x}/{y}.jpg", {   	
+		maxZoom: 11,
+		minZoom: 5,
+		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
+	}).addTo(map).bringToBack();
+
+
+	
+	for (var i = 0; i < length; i++) {
+
+		if (currentlayername == satellite_layers[i]) {
+			currentlayernumber = i;
+			
+			if (currentlayernumber == 0) {
+				$("#next").addClass("last");
+				$("#prev").removeClass("first");
+			} else if (currentlayernumber == (length-1)) {
+				$("#prev").addClass("first");
+				$("#next").removeClass("last");
+			} else {
+				$("#next").removeClass("last");
+				$("#prev").removeClass("first");
+			}
+		}	
+	}
+
+
+
+
 });
 
 
@@ -198,8 +236,7 @@ $('#modis > li').click(function() {
 	activesatellite = L.tileLayer(currentlayername + "/{z}/{x}/{y}.jpg", {   	
 		maxZoom: 11,
 		minZoom: 5,
-		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>',
-		tms: true
+		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
 	}).addTo(map).bringToBack();
 	
 
