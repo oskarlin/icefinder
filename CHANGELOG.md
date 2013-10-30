@@ -1,3 +1,19 @@
+## Version 2.0 b6 public beta
+
+Getting close to release now.
+
+* Date-picker is now in the bottom
+* Overlays are now hide/show
+* All fixed for mobile devices
+
+## Version 2.0 b5 public beta
+
+* Navigation fix
+
+
+## Version 2.0 b4 public beta
+
+
 ## Version 2.0 b3 public beta
 
 * Layer control for going back and forth through available dates OK.

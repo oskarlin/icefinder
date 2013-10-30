@@ -18,7 +18,8 @@ new L.Control.Zoom({ position: 'topright' }).addTo(map);
 activesatellite = L.tileLayer("http://tiles.icefinder.se/" + satellite_layers[0] + "/{z}/{x}/{y}.jpg", {   	
 		maxZoom: 11,
 		minZoom: 5,
-		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
+		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>',
+		detectRetina: true
 	}).addTo(map);
 
 
@@ -36,6 +37,7 @@ $('#overlays').children().each(function(){
 	var currlayer = new L.tileLayer("../2.0b/" + layername + '/{z}/{x}/{y}.png', {
 		maxZoom: 11,
 		minZoom: 5,
+		detectRetina: true,
 		attribution: '<a href="http://www.viewfinderpanoramas.org/dem3.html">Viewfinder panoramas</a>, <a href="http://www.kartverket.no">Kartverket</a>, <a href="http://www.norstedts.se/kartor/">Norstedts kartor</a>, <a href="http://www.maanmittauslaitos.fi/sv">Lantmäteriverket</a>'
 	});
  
@@ -71,6 +73,7 @@ $('#prev').click(function() {
 		activesatellite = L.tileLayer("http://tiles.icefinder.se/" + satellite_layers[currentlayernumber] + "/{z}/{x}/{y}.jpg", {   	
 			maxZoom: 11,
 			minZoom: 5,
+			detectRetina: true,
 			attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
 		}).addTo(map).bringToBack();
 		
@@ -123,6 +126,7 @@ $('#next').click(function() {
 		activesatellite = L.tileLayer("http://tiles.icefinder.se/" + satellite_layers[currentlayernumber] + "/{z}/{x}/{y}.jpg", {   	
 			maxZoom: 11,
 			minZoom: 5,
+			detectRetina: true,
 			attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
 		}).addTo(map).bringToBack();
 	
@@ -146,11 +150,11 @@ $("#togglelist").click(function() {
 
 	if (togglelist) {	
 		$("#satellites").slideUp();
-		$("#togglelistbutton").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+		$("#togglelistbutton").removeClass("fa-chevron-down").addClass("fa-chevron-up");
 		togglelist = 0;
 	} else {
 		$("#satellites").slideDown();
-		$("#togglelistbutton").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+		$("#togglelistbutton").removeClass("fa-chevron-up").addClass("fa-chevron-down");
 		togglelist = 1;
 	}
 	
@@ -170,6 +174,7 @@ $('#satellites > li').click(function() {
 	activesatellite = L.tileLayer("http://tiles.icefinder.se/" + currentlayername + "/{z}/{x}/{y}.jpg", {   	
 		maxZoom: 11,
 		minZoom: 5,
+		detectRetina: true,
 		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
 	}).addTo(map).bringToBack();
 
@@ -199,29 +204,6 @@ $('#satellites > li').click(function() {
 });
 
 
-/*	var date = new Date(currentlayerdate);
-	
-	date.setDate(date.getDate() - 1);
-		
-	var newDate = date.getDate();
-	if (newDate < 10) { newDate = "0" + newDate; }
-
-	var newMonth = date.getMonth()+1;
-//	alert (newMonth);
-	
-	if (newMonth < 10) { newMonth = "0" + newMonth; }
-	var newYear = date.getFullYear();
-
-	newlayerdate = newYear + "-" + newMonth + "-" + newDate;
-	
-	$("#activedate").text(newlayerdate);
-	
-//	$("#activedate").attr('data-date', prevlayername); 
-//	alert (prevlayername);
-*/
-
-
-
 
 
 /* click on base-layers */
@@ -229,23 +211,17 @@ $('#satellites > li').click(function() {
 $('#modis > li').click(function() {
 
 	var currentlayername = $(this).attr('data-date');
-//	var currentlayer = map.getLayersByName(currentlayername)[0];
 
  	map.removeLayer(activesatellite);
 
 	activesatellite = L.tileLayer(currentlayername + "/{z}/{x}/{y}.jpg", {   	
 		maxZoom: 11,
 		minZoom: 5,
+		detectRetina: true,
 		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
 	}).addTo(map).bringToBack();
 	
 
-/* 	baselayer = bing;
- 	map.addLayer(baselayer);
- 	map.setMaxBounds(terrainBounds);
-
-	map.setBaseLayer(currentlayer);
-*/	
 	var modis = document.getElementById("modis");
 	var i=0;
 	while (modis.childNodes[i]) {
@@ -293,10 +269,17 @@ $('#overlays > li').click(function() {
 
 activesatellite.bringToBack();
 
+var toctoggle = 1;
 	               
 $('#toc-toggle').click(function() {
-  $('#toc-content').slideToggle('fast', function() {
-  });
+	if (toctoggle) {
+		$("#toc-icon").removeClass('fa-reorder').addClass('fa-times');
+		toctoggle = 0;
+	} else {
+		$("#toc-icon").addClass('fa-reorder').removeClass('fa-times');
+		toctoggle = 1;
+	}
+		$('#toc-content').toggle();
 });
 
 					

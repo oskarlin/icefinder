@@ -30,44 +30,14 @@
     <div id="logo"><img src="img/logo.png"></div>
     
     <div id="datepicker">
-    		<div id="active"><span class="fa fa-chevron-left" id="prev"></span> 
 
-
-    		
-	    		
-					<?php 
-					
-					include("db_password.php");
-					
-					$query = "SELECT * FROM satellite ORDER BY date DESC limit 1" ;
-					$list = mysql_query($query, $link) or die("Fr?gan misslyckades: " . mysql_error());
-					
-					while ($satellites = mysql_fetch_array($list, MYSQL_ASSOC)) {
-					
-						$timestamp = strtotime($satellites['date']);
-						
-						$year = date("Y", $timestamp);
-						$yeardate = date("z", $timestamp) + 1;
-						$yeardatelength = strlen($yeardate);
-						
-						if ($yeardatelength < 2) { $listdate = $year . "00" . $yeardate; }
-						else if ($yeardatelength < 3) { $listdate = $year . "0" . $yeardate; }
-						else { $listdate = $year . $yeardate; }
-						
-						echo '<span id="activedate" data-date="' . $listdate;
-						echo '">' . $satellites['date'] . '</span>' . "\n"; 
-					
-					}
-					
-					?>
-
-	    	  <span class="fa fa-chevron-right last" id="next"></span>
-    	  </div>
-    	  
+	    	<div id="togglelist"><span class="fa fa-chevron-up" id="togglelistbutton"></span></div>
+    
 		  	<ul id="satellites">
-
 	
 					<?php
+
+					include("db_password.php");
 				
 				
 					$query = "SELECT * FROM satellite ORDER BY date DESC" ;
@@ -101,7 +71,37 @@
 				?>
 		  	</ul>
 
-	    	<div id="togglelist"><span class="fa fa-chevron-down" id="togglelistbutton"></span></div>
+    
+    		<div id="active"><span class="fa fa-chevron-left" id="prev"></span> 
+	    		
+					<?php 
+					
+					
+					$query = "SELECT * FROM satellite ORDER BY date DESC limit 1" ;
+					$list = mysql_query($query, $link) or die("Fr?gan misslyckades: " . mysql_error());
+					
+					while ($satellites = mysql_fetch_array($list, MYSQL_ASSOC)) {
+					
+						$timestamp = strtotime($satellites['date']);
+						
+						$year = date("Y", $timestamp);
+						$yeardate = date("z", $timestamp) + 1;
+						$yeardatelength = strlen($yeardate);
+						
+						if ($yeardatelength < 2) { $listdate = $year . "00" . $yeardate; }
+						else if ($yeardatelength < 3) { $listdate = $year . "0" . $yeardate; }
+						else { $listdate = $year . $yeardate; }
+						
+						echo '<span id="activedate" data-date="' . $listdate;
+						echo '">' . $satellites['date'] . '</span>' . "\n"; 
+					
+					}
+					
+					?>
+
+	    	  <span class="fa fa-chevron-right last" id="next"></span>
+    	  </div>
+    	  
 
 	    
     </div>
@@ -109,12 +109,12 @@
 	
 	  <div id="toc">
 	  	<!-- endast mobil -->
-	  	<div id="toc-toggle"><i class="icon-reorder"></i></div>
+	  	<div id="toc-toggle"><i class="fa fa-reorder" id="toc-icon"></i></div>
 	  	<!-- slut mobil -->
 	  	<div id="toc-content">
 		  	<h3>Overlays</h3>
 		  	<ul id="overlays">
-		  		<li id="tiles_colordem" class="active"> Landcover with elevation</li>
+		  		<li id="tiles_colordem" class="active"> Landcover deluxe</li>
 		  		<li id="tiles_landcover" class=""> Landcover</li>
 		  		<!--<li id="tiles_ferries" class="inactive"> Ferries</li>-->
 		  	</ul>
@@ -140,7 +140,10 @@
 		  // Adding layers from SQL database 
 		  
 		  var satellite_layers = new Array(<?php
-		  
+
+
+			  $query = "SELECT * FROM satellite ORDER BY date DESC" ;
+						  
 	$jslist = mysql_query($query, $link) or die("Fr?gan misslyckades: " . mysql_error());
 	
 	$first = 1;
