@@ -132,7 +132,7 @@ body {
 }
 
 #logo img {
-	width: 300px;
+	width: 200px;
 	height: auto;
 }
 
@@ -292,7 +292,7 @@ a:visited {
 	color: #4a4a4a;
 }
 
-#prev, #next, #togglelistbutton {
+#satellites li, #prev, #next, #togglelistbutton {
 	color: rgb(255,0,135);
 }
 
@@ -307,7 +307,7 @@ a:visited {
 	text-align: center;
 }
 
-#togglelistbutton:hover, #prev:hover, #next:hover {
+#togglelistbutton:hover, #prev:hover, #next:hover, #satellites li:hover {
 	color: rgba(201,0,95,1);
 	
 }
@@ -321,14 +321,22 @@ a:visited {
 	text-align: center;
 	margin-top:-15px;
 	padding:0;
-	display: none;
 }
 
 
 #satellites {
-	height: 400px;
+	max-height: 400px;
 	overflow-y:auto;
 	display: none;
+	margin: 0px 0px 11px 0px;
+	padding: 0;
+}
+
+#satellites li {
+	cursor: pointer;
+	text-align: center;
+	font-size: 20px;
+	list-style: none;
 }
 
 

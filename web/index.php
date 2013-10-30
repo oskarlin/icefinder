@@ -27,7 +27,7 @@
     <!-- Add your site or application content here -->
 	
 	
-    <div id="logo"><img src="img/logo2.0.png"></div>
+    <div id="logo"><img src="img/logo.png"></div>
     
     <div id="datepicker">
     		<div id="active"><span class="fa fa-chevron-left" id="prev"></span> 
@@ -94,45 +94,14 @@
 							$mostrecent_satellite = $satellites['date'];
 						}
 						
-						echo '">' . $satellites['date'] . ' ' . $type . '</li>' . "\n"; 
+						echo '">' . $satellites['date'] . '</li>' . "\n"; 
 							
 					}
 				
 				?>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
-					<li>hfjeh</li>
 		  	</ul>
 
-	    	<div id="togglelist"><span class="fa fa-chevron-up" id="togglelistbutton"></span></div>
+	    	<div id="togglelist"><span class="fa fa-chevron-down" id="togglelistbutton"></span></div>
 
 	    
     </div>
