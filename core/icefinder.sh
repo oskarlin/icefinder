@@ -5,11 +5,11 @@
 PASSWORD="$1"
 TILEPATH="$2"
 
-# DATE_NASA=$(date +"%Y%j") # use this if you want todays files
-# DATE_DATABASE=$(date +"%Y-%m-%d")
+DATE_NASA=$(date +"%Y%j") # use this if you want todays files
+DATE_DATABASE=$(date +"%Y-%m-%d")
 
-DATE_NASA="2013301"  # use this line if you want a specific date
-DATE_DATABASE="2013-10-29" # and this
+# DATE_NASA="2013301"  # use this line if you want a specific date
+# DATE_DATABASE="2013-10-29" # and this
 
 ### Downloading two JPG files from Earthdata.nasa.gov (extracted from https://earthdata.nasa.gov/labs/worldview/ )
 
@@ -63,7 +63,7 @@ rm combined.tif
 
 ### Posting to Twitter!
 
-python tweet.py "Todays images are now online on Ice Finder! http://www.icefinder.se"
+python tweet.py "Today's imagery are now online on Ice Finder! http://www.icefinder.se"
 
 echo "Done!"
 
