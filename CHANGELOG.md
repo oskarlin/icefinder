@@ -1,3 +1,12 @@
+## Version 2.0 b7 release candidate
+
+Everything Seems to be working fine, therefore this version is public and replaces the under construction page!
+
+* Included in the script now is also a automatic tweet to the Icefinder twitter account.
+* Website still not tested in Firefox and IE...
+* Help would be nice to have too..
+
+
 ## Version 2.0 b6 public beta
 
 Getting close to release now.
