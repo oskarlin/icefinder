@@ -34,7 +34,7 @@ $('#overlays').children().each(function(){
 	
 //	alert (layername);
 	
-	var currlayer = new L.tileLayer("../2.0b/" + layername + '/{z}/{x}/{y}.png', {
+	var currlayer = new L.tileLayer("http://icefinder.se/" + layername + '/{z}/{x}/{y}.png', {
 		maxZoom: 11,
 		minZoom: 5,
 		detectRetina: true,
@@ -203,35 +203,6 @@ $('#satellites > li').click(function() {
 
 });
 
-
-
-
-/* click on base-layers */
-
-$('#modis > li').click(function() {
-
-	var currentlayername = $(this).attr('data-date');
-
- 	map.removeLayer(activesatellite);
-
-	activesatellite = L.tileLayer(currentlayername + "/{z}/{x}/{y}.jpg", {   	
-		maxZoom: 11,
-		minZoom: 5,
-		detectRetina: true,
-		attribution: '<a href="http://earthdata.nasa.gov/data/near-real-time-data/rapid-response">NASA</a>'
-	}).addTo(map).bringToBack();
-	
-
-	var modis = document.getElementById("modis");
-	var i=0;
-	while (modis.childNodes[i]) {
-		modis.childNodes[i].className = "";
-		i++;
-	}
-	
-	$(this).addClass("active"); 
-
-});
 
 
 

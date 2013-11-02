@@ -6,7 +6,7 @@
 	<head>
 	  <meta charset="utf-8">
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	  <title>Ice finder 2.0b by Oskar Karlin</title>
+	  <title>Ice finder 2.0b7 by Oskar Karlin</title>
 	  <meta name="description" content="Ice Finder is a map app showing NASAs daily satellite imagery covering Sweden, Norway and Finland, together with a landcover (water excludet) etc.">
 	  <meta name="viewport" content="width=device-width">
 	
