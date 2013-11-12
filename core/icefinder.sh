@@ -13,9 +13,9 @@ DATE_DATABASE=$(date +"%Y-%m-%d")
 
 ### Downloading two JPG files from Earthdata.nasa.gov (extracted from https://earthdata.nasa.gov/labs/worldview/ )
 
-wget -O 1-2-1.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$DATE_NASA&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_SurfaceReflectance_Bands121&format=image/jpeg&width=12288&height=6827"
+wget -O /root/git/icefinder/core/1-2-1.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$DATE_NASA&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_SurfaceReflectance_Bands121&format=image/jpeg&width=12288&height=6827"
 
-wget -O 3-6-7.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$DATE_NASA&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_CorrectedReflectance_Bands367&format=image/jpeg&width=12288&height=6827"
+wget -O /root/git/icefinder/core/3-6-7.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$DATE_NASA&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_CorrectedReflectance_Bands367&format=image/jpeg&width=12288&height=6827"
 
 # Reproject the downloaded files to web mercator and TIF (don't needed???)
 
@@ -25,21 +25,22 @@ wget -O 3-6-7.jpg "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=$D
 
 ### Create a big JPG with the two layers using make_satellite.py with the imagery.xml script
 
-echo "generating combined image..."
-python make_satellite.py   # I have included make_satellite.py to speed up the actual tile generation (below)
+### echo "generating combined image..."
+### python make_satellite.py   # I have included make_satellite.py to speed up the actual tile generation (below)
 
 ### Create a TIF which has the content tiled.
 
 echo "converting to tiled TIF" 
-gdal_translate combined.jpg combined.tif -co "TILED=YES" # This is also for speeding up tile making
+
+gdal_translate /root/git/icefinder/core/1-2-1.jpg /root/git/icefinder/core/1-2-1.tif -co "TILED=YES"
+gdal_translate /root/git/icefinder/core/3-6-7.jpg /root/git/icefinder/core/3-6-7.tif -co "TILED=YES"
+
+### gdal_translate combined.jpg combined.tif -co "TILED=YES" # This is also for speeding up tile making
 
 ### generate tiles from the combine.tif.
 ### Going back to Mapnik since gdal2tiles makes ugly tiles (no nice resampling)
 
-MAPNIK_MAP_FILE="image.xml" MAPNIK_TILE_DIR="$TILEPATH/$DATE_NASA" MAPNIK_MINZOOM="5" MAPNIK_MAXZOOM="9" python generate_tiles_imagery.py
-
-MAPNIK_MAP_FILE="image.xml" MAPNIK_TILE_DIR="$TILEPATH/$DATE_NASA" MAPNIK_MINZOOM="10" MAPNIK_MAXZOOM="11" python generate_tiles_imagery.py
-
+MAPNIK_MAP_FILE="/root/git/icefinder/core/image_cloud.xml" MAPNIK_TILE_DIR="/root/git/icefinder/core/img-tiles/$TILEPATH/$DATE_NASA" MAPNIK_MINZOOM="5" MAPNIK_MAXZOOM="11" python generate_tiles_imagery.py
 
 # python gdal2tiles_jpg.py --tile-format="jpeg" -r bilinear -z 5-11 -s "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +units=m +no_defs" combined.jpg $TILEPATH/$DATE_NASA
 
@@ -52,12 +53,12 @@ wget -q -O result.html "http://www.icefinder.se/2.0b/add.php?date=$DATE_DATABASE
 
 ### Renaming combine file (as backup)
 
-mv combined.jpg combined.$DATE_NASA.jpg
+## mv combined.jpg combined.$DATE_NASA.jpg
 
 ### Removing all used files
 
-rm 1-2-1.jpg
-rm 3-6-7.jpg
+rm /root/git/icefinder/core/1-2-1.jpg
+rm /root/git/icefinder/core/3-6-7.jpg
 rm result.html
 rm $DATE_NASA/googlemaps.html
 rm $DATE_NASA/openlayers.html
