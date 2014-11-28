@@ -5,11 +5,11 @@
 PASSWORD="$1"
 TILEPATH="$2"
 
+DATE_NASA=$(date +"%Y%j")
+
 # download the image
 
-# wget -O $DLPATH/image.jpg http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=2014332&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_Land_Surface_Temp_Day&format=image/jpeg&width=12288&height=6827
-
-wget -O image.tif "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME=2014332&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_Land_Surface_Temp_Day&format=image/tiff&width=12288&height=6827"
+wget -O image.tif "http://map2.vis.earthdata.nasa.gov/imagegen/index.php?TIME= $DATE_NASA&extent=4.0,55.0,31.0,70.0&epsg=4326&layers=MODIS_Terra_Land_Surface_Temp_Day&format=image/tiff&width=12288&height=6827"
 
 
 gdal_translate -b 1 image.tif image_red.tif
