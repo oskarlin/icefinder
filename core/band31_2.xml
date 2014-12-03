@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" maximum-extent="-20037508.34,-20037508.34,20037508.34,20037508.34">
+
+<Parameters>
+  <Parameter name="bounds">-180,-85.05112877980659,180,85.05112877980659</Parameter>
+  <Parameter name="center">0,0,2</Parameter>
+  <Parameter name="format">png24</Parameter>
+  <Parameter name="minzoom">0</Parameter>
+  <Parameter name="maxzoom">22</Parameter>
+  <Parameter name="scale">1</Parameter>
+  <Parameter name="metatile">2</Parameter>
+  <Parameter name="id"><![CDATA[band31]]></Parameter>
+  <Parameter name="_updated">1417212708000</Parameter>
+  <Parameter name="name"><![CDATA[band31]]></Parameter>
+  <Parameter name="tilejson"><![CDATA[2.0.0]]></Parameter>
+  <Parameter name="scheme"><![CDATA[xyz]]></Parameter>
+</Parameters>
+
+
+<Style name="countries" filter-mode="first">
+  <Rule>
+    <LineSymbolizer stroke="#559944" />
+  </Rule>
+</Style>
+<Layer name="countries"
+  status="off"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>countries</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/band31/layers/countries/82945364-10m-admin-0-countries.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="nogeland" filter-mode="first">
+  <Rule>
+    <LineSymbolizer stroke="#559944" stroke-width="0.5" />
+    <PolygonSymbolizer fill-opacity="1" fill="#aaee88" />
+  </Rule>
+</Style>
+<Layer name="nogeland"
+  status="off"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>nogeland</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/band31/layers/nogeland/noge-land.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="myriks" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([KKOD] = 3)</Filter>
+    <LineSymbolizer stroke="#0016c7" stroke-width="1" />
+    <PolygonSymbolizer fill-opacity="0" />
+  </Rule>
+</Style>
+<Layer name="myriks"
+  srs="+proj=utm +zone=33 +ellps=GRS80 +units=m +no_defs">
+    <StyleName>myriks</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/band31/layers/myriks/my_riks.shp]]></Parameter>
+       <Parameter name="encoding"><![CDATA[LATIN1]]></Parameter>
+       <Parameter name="id"><![CDATA[myriks]]></Parameter>
+       <Parameter name="project"><![CDATA[band31]]></Parameter>
+       <Parameter name="srs"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="kustlinje250" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <LineSymbolizer stroke-width="0.5" stroke="#0016c7" />
+  </Rule>
+</Style>
+<Layer name="kustlinje250"
+  srs="+proj=tmerc +lat_0=0 +lon_0=15.80827777777778 +k=1 +x_0=1500000 +y_0=0 +ellps=bessel +units=m +no_defs">
+    <StyleName>kustlinje250</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/band31/layers/kustlinje250/kustlinje_250.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="mlriks" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([KKOD] = 104)</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#0016c7" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([KKOD] = 105)</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#0016c7" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([KKOD] = 107)</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#0016c7" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([KKOD] = 102)</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#0016c7" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>3000000</MaxScaleDenominator>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([KKOD] = 112)</Filter>
+    <LineSymbolizer stroke-width="1" stroke="#0016c7" />
+  </Rule>
+</Style>
+<Layer name="mlriks"
+  srs="+proj=utm +zone=33 +ellps=GRS80 +units=m +no_defs">
+    <StyleName>mlriks</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/band31/layers/mlriks/ml_riks.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="ne10mlakeseurope" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>3000000</MinScaleDenominator>
+    <LineSymbolizer stroke="#0016c7" stroke-width="1" />
+    <PolygonSymbolizer fill-opacity="0" />
+  </Rule>
+</Style>
+<Layer name="ne10mlakeseurope"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>ne10mlakeseurope</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/band31/layers/ne10mlakeseurope/ne_10m_lakes_europe.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="ne10mlakes" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>3000000</MinScaleDenominator>
+    <LineSymbolizer stroke="#0016c7" stroke-width="1" />
+    <PolygonSymbolizer fill-opacity="0" />
+  </Rule>
+</Style>
+<Layer name="ne10mlakes"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>ne10mlakes</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/band31/layers/ne10mlakes/ne_10m_lakes.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="ne10mocean" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500000</MaxScaleDenominator>
+    <MinScaleDenominator>3000000</MinScaleDenominator>
+    <LineSymbolizer stroke="#0016c7" stroke-width="1" />
+    <PolygonSymbolizer fill-opacity="0" />
+  </Rule>
+</Style>
+<Layer name="ne10mocean"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>ne10mocean</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/band31/layers/ne10mocean/ne_10m_ocean.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="ne50mlakes" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>200000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <LineSymbolizer stroke="#0016c7" stroke-width="1" />
+    <PolygonSymbolizer fill-opacity="0" />
+  </Rule>
+</Style>
+<Layer name="ne50mlakes"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>ne50mlakes</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/band31/layers/ne50mlakes/ne_50m_lakes.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="ne50mocean" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>200000000</MaxScaleDenominator>
+    <MinScaleDenominator>12500000</MinScaleDenominator>
+    <LineSymbolizer stroke="#0016c7" stroke-width="1" />
+    <PolygonSymbolizer fill-opacity="0" />
+  </Rule>
+</Style>
+<Layer name="ne50mocean"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>ne50mocean</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/band31/layers/ne50mocean/ne_50m_ocean.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="sjo250namn" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <LineSymbolizer stroke="#0016c7" stroke-width="1" />
+    <PolygonSymbolizer fill-opacity="0" />
+  </Rule>
+</Style>
+<Layer name="sjo250namn"
+  srs="+proj=tmerc +lat_0=0 +lon_0=15.80827777777778 +k=1 +x_0=1500000 +y_0=0 +ellps=bessel +units=m +no_defs">
+    <StyleName>sjo250namn</StyleName>
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/oskarlin/Documents/MapBox/project/band31/layers/sjo250namn/sjo_250_namn.shp]]></Parameter>
+       <Parameter name="id"><![CDATA[sjo250namn]]></Parameter>
+       <Parameter name="project"><![CDATA[band31]]></Parameter>
+       <Parameter name="srs"><![CDATA[]]></Parameter>
+       <Parameter name="encoding"><![CDATA[LATIN1]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>

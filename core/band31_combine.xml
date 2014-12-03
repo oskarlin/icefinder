@@ -1,0 +1,27 @@
+<Map srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+  <Style name="red style">
+    <Rule>
+      <RasterSymbolizer />
+    </Rule>
+  </Style>  
+  <Style name="green style">
+    <Rule>
+      <RasterSymbolizer />
+    </Rule>
+  </Style>
+ 
+  <Layer name="red">
+    <StyleName>red style</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">image_red_rgb.tif</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="green">
+    <StyleName>green style</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">image_green_rgb.tif</Parameter>
+    </Datasource>
+  </Layer>  
+</Map>
