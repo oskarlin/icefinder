@@ -12,6 +12,9 @@ DAYTIME="$5"
 if test "$3" = "today"
 then
 	DATE_NASA=$(date +"%Y%j")
+elif test "$3" = "yesterday"
+then
+	DATE_NASA=$(date -j -v-1d +"%Y%j")
 else
 	DATE_NASA="$3"
 fi
